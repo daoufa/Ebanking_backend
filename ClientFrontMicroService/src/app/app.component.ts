@@ -19,4 +19,11 @@ export class AppComponent {
     http.get("login").subscribe((data) => (this.login = data));
   }
   ngOnInit(): void {}
+
+  onSelectedVirement() {
+    this.router.navigateByUrl("/virement");
+  }
+  onSelectedComptes() {
+    this.router.navigateByUrl("/home");
+  }
 }

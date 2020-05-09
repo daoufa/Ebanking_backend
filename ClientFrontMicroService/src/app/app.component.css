@@ -1,0 +1,66 @@
+html,
+body {
+  height: 100%;
+}
+
+.navbar-brand img {
+  height: 50px;
+  padding: 0px;
+  border-radius: 5px;
+  width: 170px;
+}
+
+#mainnav a {
+  color: aliceblue;
+}
+
+#mainnav {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  /* opacity: 0.7; */
+}
+#mainnav > div > a {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+#main-header {
+  background-color: #8b8b8a;
+  border-radius: 5px;
+}
+#headerDiv {
+  padding: 0px;
+  z-index: 1;
+}
+#profile-icon {
+  width: 20px;
+  height: 20px;
+}
+#main-header a {
+  color: rgba(3, 3, 3, 0.712);
+  font-family: sans-serif;
+  border-left: 1px solid #fffefc;
+  border-right: 1px solid #ffffff;
+  width: 300;
+  height: 50px;
+}
+.aHover:hover {
+  color: #fff;
+  background-color: rgb(101, 103, 104);
+}
+
+#seachIcon {
+  background-color: rgba(223, 193, 23, 0.712);
+}
+#searchDiv > form > input {
+  background-color: rgb(235, 234, 231);
+}
+
+#footer1 {
+  position: relative;
+  height: 300px;
+  clear: both;
+  bottom: 0;
+  width: 100%;
+  background-color: #bd9334;
+}
