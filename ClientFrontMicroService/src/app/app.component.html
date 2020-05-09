@@ -26,21 +26,21 @@
   <header id="main-header">
     <ul class="nav nav-fill nav-pills">
       <li class="nav-item">
-        <a class="nav-link aHover" (click)="onSelectedVirement()"
+        <a class="nav-link aHover" routerLink="/virement"
           >Virment Bancaire</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link aHover" id="day" href="#">Recharge Telephonique</a>
+        <a class="nav-link aHover" id="day" routerLink="/recharge">Recharge Telephonique</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link aHover" (click)="onSelectedComptes()"
+        <a class="nav-link aHover" routerLink="/comptes"
           >Gestion de comptes</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link aHover" href="#"
-          ><span id="profile-icon" class="fas fa-user-circle fa-lg"></span
+        <a class="nav-link aHover"  routerLink="/profiles"
+          ><span id="profile-icon" class="fas fa-user-circle fa-lg" ></span
         ></a>
       </li>
     </ul>
