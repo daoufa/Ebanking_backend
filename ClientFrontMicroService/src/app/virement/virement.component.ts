@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CompteEpargne} from '../model/compteEpargne.model';
+import {Virement} from "../model/virement.model";
 
 @Component({
   selector: 'app-virement',
@@ -9,8 +10,8 @@ import {CompteEpargne} from '../model/compteEpargne.model';
 export class VirementComponent implements OnInit {
 
 
-  numbers=["123456","123456785",'12345678998745'];
-
+  vir=new Virement();
+  virements=[ new Virement(),new Virement(),new Virement()];
   compte=[new CompteEpargne(), new CompteEpargne(),new CompteEpargne()];
   constructor() {
   }
