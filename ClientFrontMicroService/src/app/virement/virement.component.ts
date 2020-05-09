@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CompteEpargne} from '../model/compteEpargne.model';
+import {Virement} from "../model/virement.model";
 
 @Component({
   selector: 'app-virement',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VirementComponent implements OnInit {
 
-  constructor() { }
+
+  vir=new Virement();
+  virements=[ new Virement(),new Virement(),new Virement()];
+  compte=[new CompteEpargne(), new CompteEpargne(),new CompteEpargne()];
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  onGetComptes() {
   }
 
 }
