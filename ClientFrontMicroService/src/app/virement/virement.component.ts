@@ -10,8 +10,8 @@ import {Virement} from "../model/virement.model";
 export class VirementComponent implements OnInit {
 
 
-  vir=new Virement();
-  virements=[ new Virement(),new Virement(),new Virement()];
+
+  virements = [ new Virement(), new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement()];
   compte=[new CompteEpargne(), new CompteEpargne(),new CompteEpargne()];
   constructor() {
   }
