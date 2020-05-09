@@ -8,4 +8,6 @@ export class Virement {
   public compte: CompteEpargne;
   public destCompte: CompteEpargne;
 
+
+
 }
