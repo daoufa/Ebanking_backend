@@ -13,7 +13,12 @@
       tenetur laudantium nobis voluptate sed rem praesentium consectetur
       exercitationem vitae ea quae vel id!
     </p>
-    <a class="btn btn-outline-primary float-right" href="#">plus de détails</a>
+    <a
+      class="btn btn-outline-primary"
+      style="margin-left: 700px;"
+      routerLink="/profiles"
+      >plus de détails</a
+    >
     <!-- <div class="card">
       <div class="card-body">
         <h6 class="card-subtitle text-muted">Card subtitle</h6>
@@ -28,13 +33,79 @@
   </div>
 </div>
 
-<div class="container" id="compteContainer" *ngIf="compte">
-  <div class="row">
-    <!-- *ngFor="let p of comptes._embedded.compteEpargnes" -->
+<div class="container" id="compteContainer" *ngIf="comptes">
+  <div id="accordion">
+    <div class="card" *ngFor="let c of comptes._embedded.compteCourants">
+      <div class="card-header">
+        <h5>
+          <a href="#collapse1" data-parent="#accordion" data-toggle="collapse">
+            Compte Courant
+          </a>
+        </h5>
+      </div>
+
+      <div id="collapse1" class="collapse show">
+        <div class="card-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">date de creation</th>
+                <td>{{ c.dateCreation }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Solde</th>
+                <td>{{ c.solde }}</td>
+              </tr>
+              <tr>
+                <th scope="row">taux d'interets</th>
+                <td>{{ c.tauxInterets }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" *ngFor="let c1 of comptes._embedded.compteEpargnes">
+      <div class="card-header">
+        <h5>
+          <a href="#collapse2" data-parent="#accordion" data-toggle="collapse">
+            Collapse One
+          </a>
+        </h5>
+      </div>
+
+      <div id="collapse2" class="collapse show">
+        <div class="card-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">date de creation</th>
+                <td>{{ c1.dateCreation }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Solde</th>
+                <td>{{ c1.solde }}</td>
+              </tr>
+              <tr>
+                <th scope="row">taux d'interets</th>
+                <td>{{ c1.tauxInterets }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="container" id="compteContainer" *ngIf="comptes">
+  <div class="row" *ngFor="let c of comptes._embedded.compteEpargnes">
     <div class="col">
       <div class="card text-center">
         <div class="card-header">
-          <h1>{{ compte.dateCreation }}</h1>
+          <h1>{{ c.solde }}</h1>
         </div>
         <div class="card-body">
           <h4 class="card-title">code compte</h4>
@@ -49,7 +120,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+     <div class="col">
       <div class="card text-center">
         <div class="card-header">
           Compte 1
@@ -66,6 +137,7 @@
           2015/02/03
         </div>
       </div>
-    </div>
+    </div> 
   </div>
 </div>
+-->

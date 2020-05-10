@@ -8,10 +8,22 @@ import { ComptesService } from "../services/comptes.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  compte;
+  numclient = 1;
+  comptes;
   constructor(private router: Router, private comptesService: ComptesService) {}
 
   ngOnInit(): void {
-    this.compte = this.comptesService.getCompte(1);
+    this.getComptes();
+  }
+
+  getComptes() {
+    this.comptesService.getComptes(this.numclient).subscribe(
+      (data) => {
+        this.comptes = data;
+      },
+      (err) => {
+        console.log("getComptes Error");
+      }
+    );
   }
 }

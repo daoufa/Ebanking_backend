@@ -15,16 +15,10 @@ export class ComptesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getComptes() {
-    this.httpClient.get(this.host).subscribe(
-      (data) => {
-        this.comptes = data;
-      },
-      (err) => {
-        console.log("getComptes Error");
-      }
+  getComptes(numclient) {
+    return this.httpClient.get(
+      "//localhost:8080/clients/" + numclient + "/comptes"
     );
-    return this.comptes;
   }
 
   getCompte(numCpt) {
