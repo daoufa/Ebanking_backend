@@ -1,4 +1,22 @@
 .col-sm {
-  margin-top: 100px;
+  margin-top: 30px;
   margin-left: 30px;
 }
+div{
+  overflow-y: auto;
+}
+
+div.panel-default{
+  background-color: rgba(55,55,55,0.5);
+}
+
+table{
+  color: white;
+}
+div.panel-body{
+  background-color: rgba(00,00,66,0);
+}
+label.control-label{
+  color: white;
+}
+select.form-control { min-height: 35px; /** OR */ line-height: 35px; }

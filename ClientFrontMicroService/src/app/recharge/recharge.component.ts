@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Recharge} from "../model/reacharge.model";
 
 @Component({
   selector: 'app-recharge',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RechargeComponent implements OnInit {
 
+  recharges=[new Recharge(),new Recharge(),new Recharge(),new Recharge(),new Recharge(),];
   constructor() { }
 
   ngOnInit(): void {
