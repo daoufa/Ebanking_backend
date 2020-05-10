@@ -1,0 +1,19 @@
+#clientInfo {
+  border: 3px solid #ffffff;
+  min-height: 250px;
+  background-color: #a8acacbb;
+  border-radius: 15px;
+}
+
+#compteContainer {
+  margin-top: 100px;
+}
+
+#nomprenom {
+  border-bottom: 3px solid #f34b4b;
+  text-align: center;
+}
+
+#introPara {
+  color: aliceblue;
+}
