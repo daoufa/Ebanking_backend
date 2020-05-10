@@ -16,18 +16,20 @@ import {OperationService} from "../services/operation.service";
 export class VirementComponent implements OnInit {
 
   clients;
-  virements; //= [ new Virement(), new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement(),new Virement()];
-  compte=[new CompteEpargne(), new CompteEpargne(),new CompteEpargne()];
+  virements;
+  comptes;
 
-  constructor(private operationService : OperationService ) {
+  constructor(private operationService : OperationService ,private compteService : ComptesService) {
   }
 
   ngOnInit(): void {
 this.getClient();
+this.getComptes();
   }
 
   getClient(){
-    this.operationService.getVirements(0,1)
+
+    this.operationService.getOperationByCompteId(1)
       .subscribe(data=>{
         this.virements=data;
         console.log(data);
@@ -35,7 +37,14 @@ this.getClient();
         console.log(err);
       });
   }
-  onGetComptes() {
+  getComptes() {
+    this.compteService.getComptesByClientId(1)
+      .subscribe(data=>{
+        this.comptes=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
   }
 
 }
