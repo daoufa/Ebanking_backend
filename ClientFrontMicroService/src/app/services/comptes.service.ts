@@ -11,7 +11,7 @@ import { stringify } from "querystring";
 export class ComptesService {
   comptes;
 
-  private host = "http://localhost:8080/comptes/";
+  private host = "http://localhost:8080/clients/1/comptes/";
 
   constructor(private httpClient: HttpClient) {}
 
