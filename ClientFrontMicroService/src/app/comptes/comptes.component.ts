@@ -10,22 +10,20 @@ import { ComptesService } from '../services/comptes.service';
 export class ComptesComponent implements OnInit {
 
   public compte : any;
-
   constructor(private compteService : ComptesService) { }
 
   ngOnInit(): void {
     this.consulterCompte;
   } 
 
-  consulterCompte(numCpt : number){
-
+  consulterCompte(numCpt){
     this.compteService.getCompte(numCpt).subscribe(data => {
       this.compte = data;
       console.log(data);
     },err =>{
       console.log(err);
     });
-
+    
   }
 
 }

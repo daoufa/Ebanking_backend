@@ -7,6 +7,6 @@ export class Compte {
    codeCompte:number;
    dateCreation:Date;
    solde:number;
-   type:CompteEpargne;
-   client: Client;
+   TYPE_CPTE:string;
+   CODE_CLT: number;
 }

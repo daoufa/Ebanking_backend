@@ -8,44 +8,44 @@
                     <label style="margin:8px">Numero de Compte :</label>
                     <input type="number" name="numero" ngModel style="margin:8px">
                     <button type="submit" class="btn btn-secondary">
-                        <span class="glyphicon glyphicon-search"></span> 
+                        <span class="glyphicon glyphicon-search"></span>
                         chercher</button>
-                </div> 
+                </div>
             </form>
         </div>
     </div>
 
-    <div class="panel panel-default" >
+    <div class="panel panel-default">
         <div class="panel-heading">Information sur le compte</div>
-        <div class="panel-body" >
+        <div class="panel-body" *ngIf="compte">
             <div>
                 <label>Client :</label>
-                <label></label>
+                <label class="lb" >{{compte.clientId}}</label>
             </div>
             <div>
-                <label>Numero du Compte :</label>
-                <label></label>
+                <label>Numero du Compte: </label>
+                <label class="lb">{{compte.numCompte}}</label>
             </div>
             <div>
-                <label>Date de creation :</label>
-                <label></label>
+                <label>Date de creation: </label>
+                <label class="lb">{{compte.dateCreation}}</label>
             </div>
             <div>
-                <label>Solde :</label>
-                <label></label>
+                <label>Solde: </label>
+                <label class="lb">{{compte.solde}}</label>
             </div>
-            <!--<div>
-                <label>Type :</label>
-                <label>{{compte..class.simpleName}}</label>
-            </div> 
-            <!--<div *ngIf="compte.class.simpleName == 'CompteCourant'">
-                <label>Decouvert :</label>
-                <label>{{compte.decouvert}}</label>
-            </div> 
-            <div *ngIf="compte.class.simpleName =='CompteEpargne'">
-                <label>Taux :</label>
-                <label>{{compte.taux}}</label>
-            </div> -->
+            <div *ngIf="compte.decouvert">
+                <label>Type: </label>
+                <label class="lb">Courant</label><br>
+                <label>Decouvert: </label>
+                <label class="lb">{{compte.decouvert}}</label>
+            </div>
+            <div *ngIf="compte.tauxInterets">
+                <label>Type: </label>
+                <label class="lb">Epargne</label><br>
+                <label>Taux: </label>
+                <label class="lb">{{compte.tauxInterets}}</label>
+            </div>
         </div>
     </div>
 </div>
