@@ -43,6 +43,7 @@ this.getComptes();
   isCourant(v:boolean){
     this.isEpargne=!v;
   }
+
   getComptes() {
     this.compteService.getComptesByClientId(1)
       .subscribe(data=>{
@@ -52,16 +53,6 @@ this.getComptes();
         console.log(err);
       });
   }
-  getCompteIdByOperation(id:number){
-     this.compte=this.compteService.getComptesByOperationId(id)
-       .subscribe(data=>{
-         this.compteNum=data['numCompte'];
-         console.log(data['numCompte']);
-       },err=>{
-         console.log(err);
-       });
-     this.compte.unsubscribe;
 
-  }
 
 }

@@ -11,12 +11,13 @@ import { Router } from "@angular/router";
 export class AppComponent {
   title = "ClientFrontMicroService";
   login = {};
+
   constructor(
     private http: HttpClient,
     private authService: AuthenticationService,
     private router: Router
   ) {
-  //  http.get("login").subscribe((data) => (this.login = data));
+    //  http.get("login").subscribe((data) => (this.login = data));
   }
   ngOnInit(): void {}
 
