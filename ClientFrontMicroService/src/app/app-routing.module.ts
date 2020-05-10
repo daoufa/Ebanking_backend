@@ -9,7 +9,7 @@ import { RechargeComponent } from './recharge/recharge.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "login", component: LoginComponent },
+ // { path: "login", component: LoginComponent },
   { path: "virement", component: VirementComponent },
   { path: "comptes", component: ComptesComponent },
   {path: "profiles", component: ProfileComponent },
