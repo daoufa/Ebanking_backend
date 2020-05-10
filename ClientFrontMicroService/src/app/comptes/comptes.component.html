@@ -1,1 +1,51 @@
-<p>comptes works!</p>
+<p></p>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Consultation d'un compte</div>
+        <div class="panel-body">
+            <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
+                <div class="form-group">
+                    <label style="margin:8px">Numero de Compte :</label>
+                    <input type="number" name="numero" ngModel style="margin:8px">
+                    <button type="submit" class="btn btn-secondary">
+                        <span class="glyphicon glyphicon-search"></span> 
+                        chercher</button>
+                </div> 
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" >
+        <div class="panel-heading">Information sur le compte</div>
+        <div class="panel-body" >
+            <div>
+                <label>Client :</label>
+                <label></label>
+            </div>
+            <div>
+                <label>Numero du Compte :</label>
+                <label></label>
+            </div>
+            <div>
+                <label>Date de creation :</label>
+                <label></label>
+            </div>
+            <div>
+                <label>Solde :</label>
+                <label></label>
+            </div>
+            <!--<div>
+                <label>Type :</label>
+                <label>{{compte..class.simpleName}}</label>
+            </div> 
+            <!--<div *ngIf="compte.class.simpleName == 'CompteCourant'">
+                <label>Decouvert :</label>
+                <label>{{compte.decouvert}}</label>
+            </div> 
+            <div *ngIf="compte.class.simpleName =='CompteEpargne'">
+                <label>Taux :</label>
+                <label>{{compte.taux}}</label>
+            </div> -->
+        </div>
+    </div>
+</div>
