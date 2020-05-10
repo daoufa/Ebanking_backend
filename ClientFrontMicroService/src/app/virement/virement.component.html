@@ -28,7 +28,7 @@
                 <div class="form-group">
                   <label class="control-label">Transfert de :</label>
                   <select class="form-control" id="exampleFormControlSelect1">
-                    <option *ngFor="let c of compte">{{ c.id }}</option>
+                    <option *ngFor="let c of comptes._embedded.compteCourants">{{ c.numCompte }}</option>
                   </select>
                 </div>
                 <div class="form-group">
