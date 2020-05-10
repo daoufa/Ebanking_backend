@@ -1,24 +1,40 @@
-<div class="container" id="clientInfo">
-  <h1 id="nomprenom">Nom Prenom</h1>
+<div class="container">
   <div class="container">
-    <p id="introPara">
+    <!-- <p id="introPara">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
       impedit non eligendi dolor illo accusantium molestias tenetur laudantium
       nobis voluptate sed rem praesentium consectetur exercitationem vitae ea
-      quae vel id! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Temporibus, impedit non eligendi dolor illo accusantium molestias tenetur
-      laudantium nobis voluptate sed rem praesentium consectetur exercitationem
-      vitae ea quae vel id! Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Temporibus, impedit non eligendi dolor illo accusantium molestias
-      tenetur laudantium nobis voluptate sed rem praesentium consectetur
-      exercitationem vitae ea quae vel id!
-    </p>
-    <a
+    </p> -->
+    <div class="card bg-dark text-white p-3" id="clientInfo">
+      <blockquote class="card-bodyquote">
+        <p *ngIf="client">
+          &nbsp;&nbsp;&nbsp;&nbsp;Bienvenue
+          <i
+            style="
+              color: rgb(248, 4, 228);
+              font-weight: bold;
+              text-transform: capitalize;
+            "
+            >{{ client.nom }} {{ client.prenom }}</i
+          >
+          <br />
+          Dans cette application vous pouvez consulter votre comptes, effectuer
+          des virements et des recharges telephonique tout en ligne
+        </p>
+        <footer class="blockquote-footer">
+          <small>
+            genie informatique
+            <cite title="Source Title">Ensa</cite>
+          </small>
+        </footer>
+      </blockquote>
+    </div>
+    <!-- <a
       class="btn btn-outline-primary"
       style="margin-left: 750px;"
       routerLink="/profiles"
-      ><i class="fas fa-plus"></i> plus de détails
-    </a>
+      ><i class="fas fa-plus"></i> Voir Profile
+    </a> -->
   </div>
 </div>
 
