@@ -15,13 +15,14 @@ export class ComptesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getComptes(numclient) {
+  getComptesByClientId(numclient:number) {
     return this.httpClient.get(
-      "//localhost:8080/clients/" + numclient + "/comptes"
+      "http://localhost:8080/clients/" + numclient + "/comptes"
     );
   }
 
   getCompte(numCpt) {
     return this.httpClient.get(this.host + numCpt.numero);
   }
+
 }
