@@ -1,0 +1,51 @@
+<p></p>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Consultation d'un compte</div>
+        <div class="panel-body">
+            <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
+                <div class="form-group">
+                    <label style="margin:8px">Numero de Compte :</label>
+                    <input type="number" name="numero" ngModel style="margin:8px">
+                    <button type="submit" class="btn btn-secondary">
+                        <span class="glyphicon glyphicon-search"></span>
+                        chercher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Information sur le compte</div>
+        <div class="panel-body" *ngIf="compte">
+            <div>
+                <label>Client :</label>
+                <label class="lb" >{{compte.clientId}}</label>
+            </div>
+            <div>
+                <label>Numero du Compte: </label>
+                <label class="lb">{{compte.numCompte}}</label>
+            </div>
+            <div>
+                <label>Date de creation: </label>
+                <label class="lb">{{compte.dateCreation}}</label>
+            </div>
+            <div>
+                <label>Solde: </label>
+                <label class="lb">{{compte.solde}}</label>
+            </div>
+            <div *ngIf="compte.decouvert">
+                <label>Type: </label>
+                <label class="lb">Courant</label><br>
+                <label>Decouvert: </label>
+                <label class="lb">{{compte.decouvert}}</label>
+            </div>
+            <div *ngIf="compte.tauxInterets">
+                <label>Type: </label>
+                <label class="lb">Epargne</label><br>
+                <label>Taux: </label>
+                <label class="lb">{{compte.tauxInterets}}</label>
+            </div>
+        </div>
+    </div>
+</div>

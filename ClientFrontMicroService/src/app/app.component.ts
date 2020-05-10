@@ -16,7 +16,7 @@ export class AppComponent {
     private authService: AuthenticationService,
     private router: Router
   ) {
-    http.get("login").subscribe((data) => (this.login = data));
+  //  http.get("login").subscribe((data) => (this.login = data));
   }
   ngOnInit(): void {}
 

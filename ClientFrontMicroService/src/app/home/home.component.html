@@ -28,12 +28,13 @@
   </div>
 </div>
 
-<div class="container" id="compteContainer">
+<div class="container" id="compteContainer" *ngIf="compte">
   <div class="row">
+    <!-- *ngFor="let p of comptes._embedded.compteEpargnes" -->
     <div class="col">
       <div class="card text-center">
         <div class="card-header">
-          Compte 1
+          <h1>{{ compte.dateCreation }}</h1>
         </div>
         <div class="card-body">
           <h4 class="card-title">code compte</h4>

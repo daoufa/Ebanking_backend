@@ -8,11 +8,11 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="outDiv">
         <div class="panel-heading">Virements</div>
 
         <div class="panel-body">
-          <div class="panel panel-default">
+          <div class="panel panel-default" id="inDiv">
             <div class="panel-body">
               <form #f="ngForm">
                 <div class="form-group">
@@ -26,7 +26,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlSelect1">Transfert de :</label>
+                  <label class="control-label">Transfert de :</label>
                   <select class="form-control" id="exampleFormControlSelect1">
                     <option *ngFor="let c of compte">{{ c.id }}</option>
                   </select>
@@ -45,6 +45,18 @@
                   Enregistrer
                 </button>
               </form>
+              <table *ngIf="clients" class="table table-striped">
+                <tr>
+                  <th>ID</th>
+                  <th>DES</th>
+                  <th>PRIX</th>
+                  <th>QTE</th>
+                </tr>
+
+                <tr *ngFor="let p of clients._embedded.clients">
+                  <td>{{ p.nom }}</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -54,19 +66,17 @@
       <div class="panel panel-default">
         <div class="panel-heading">Historique des virements</div>
 
-        <div class="panel-body">
+        <div class="panel-body" style="height: 500px;">
           <div class="panel panel-default">
             <div class="panel-body">
               <table *ngIf="virements" class="table table-striped">
                 <tr>
-                  <th>Numero</th>
                   <th>montant</th>
                   <th>date</th>
                   <th>vers :</th>
                 </tr>
 
-                <tr *ngFor="let p of virements">
-                  <td>{{ p.id }}</td>
+                <tr *ngFor="let p of virements._embedded.virements">
                   <td>{{ p.montant }}</td>
                   <td>{{ p.dateOperation }}</td>
                   <td>123315438743543864</td>
