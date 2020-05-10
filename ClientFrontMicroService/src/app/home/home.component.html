@@ -15,39 +15,46 @@
     </p>
     <a
       class="btn btn-outline-primary"
-      style="margin-left: 700px;"
+      style="margin-left: 750px;"
       routerLink="/profiles"
-      >plus de détails</a
-    >
-    <!-- <div class="card">
-      <div class="card-body">
-        <h6 class="card-subtitle text-muted">Card subtitle</h6>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, quas.
-        </p>
-        <a class="btn btn-outline-primary float-right" href="#"
-          >plus de détails</a
-        >
-      </div> 
-    </div>-->
+      ><i class="fas fa-plus"></i> plus de détails
+    </a>
   </div>
 </div>
 
 <div class="container" id="compteContainer" *ngIf="comptes">
   <div id="accordion">
-    <div class="card" *ngFor="let c of comptes._embedded.compteCourants">
-      <div class="card-header">
+    <div
+      class="card"
+      *ngFor="let c of comptes._embedded.compteCourants; index as i; first as f"
+    >
+      <div
+        class="card-header"
+        style="background-color: rgba(151, 148, 148, 0.842);"
+      >
         <h5>
-          <a href="#collapse1" data-parent="#accordion" data-toggle="collapse">
-            Compte Courant
+          <a
+            href="#collapse{{ i }}"
+            data-parent="#accordion"
+            data-toggle="collapse"
+            style="color: rgb(197, 38, 38);"
+          >
+            Numero de compte {{ c.numCompte }}
           </a>
         </h5>
       </div>
 
-      <div id="collapse1" class="collapse show">
+      <div
+        id="collapse{{ i }}"
+        [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
+      >
         <div class="card-body">
           <table class="table table-striped">
             <tbody>
+              <tr>
+                <th scope="row">type du compte</th>
+                <td>compte Courant</td>
+              </tr>
               <tr>
                 <th scope="row">date de creation</th>
                 <td>{{ c.dateCreation }}</td>
@@ -60,25 +67,54 @@
                 <th scope="row">taux d'interets</th>
                 <td>{{ c.tauxInterets }}</td>
               </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>
+                  <a routerLink="/comptes"
+                    >voir plus <i class="fas fa-arrow-alt-circle-right"></i
+                  ></a>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="card" *ngFor="let c1 of comptes._embedded.compteEpargnes">
-      <div class="card-header">
+<div class="container" id="compteContainer" *ngIf="comptes">
+  <div id="accordion1">
+    <div
+      class="card"
+      *ngFor="let c1 of comptes._embedded.compteEpargnes; index as i1"
+    >
+      <div
+        class="card-header"
+        style="background-color: rgba(151, 148, 148, 0.842);"
+      >
         <h5>
-          <a href="#collapse2" data-parent="#accordion" data-toggle="collapse">
-            Collapse One
+          <a
+            href="#collapse1{{ i1 }}"
+            data-parent="#accordion1"
+            data-toggle="collapse"
+          >
+            Numero de compte {{ c1.numCompte }}
           </a>
         </h5>
       </div>
 
-      <div id="collapse2" class="collapse show">
+      <div
+        id="collapse1{{ i1 }}"
+        [ngClass]="{ 'collapse show': i1 === 0, collapse: i1 != 0 }"
+      >
         <div class="card-body">
           <table class="table table-striped">
             <tbody>
+              <tr>
+                <th scope="row">type du compte</th>
+                <td>compte Epargne</td>
+              </tr>
               <tr>
                 <th scope="row">date de creation</th>
                 <td>{{ c1.dateCreation }}</td>
@@ -91,6 +127,14 @@
                 <th scope="row">taux d'interets</th>
                 <td>{{ c1.tauxInterets }}</td>
               </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>
+                  <a routerLink="/comptes"
+                    >voir plus <i class="fas fa-arrow-alt-circle-right"></i
+                  ></a>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -98,46 +142,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<div class="container" id="compteContainer" *ngIf="comptes">
-  <div class="row" *ngFor="let c of comptes._embedded.compteEpargnes">
-    <div class="col">
-      <div class="card text-center">
-        <div class="card-header">
-          <h1>{{ c.solde }}</h1>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">code compte</h4>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut,
-            perspiciatis.
-          </p>
-          <a class="btn btn-dark" href="#">voir plus</a>
-        </div>
-        <div class="card-footer text-muted">
-          2015/02/03
-        </div>
-      </div>
-    </div>
-     <div class="col">
-      <div class="card text-center">
-        <div class="card-header">
-          Compte 1
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">code compte</h4>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut,
-            perspiciatis.
-          </p>
-          <a class="btn btn-dark" href="#">voir plus</a>
-        </div>
-        <div class="card-footer text-muted">
-          2015/02/03
-        </div>
-      </div>
-    </div> 
-  </div>
-</div>
--->
