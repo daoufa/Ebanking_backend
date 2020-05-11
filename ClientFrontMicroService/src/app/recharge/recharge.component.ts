@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Recharge} from "../model/reacharge.model";
+import {OperationService} from "../services/operation.service";
 
 @Component({
   selector: 'app-recharge',
@@ -8,10 +9,22 @@ import {Recharge} from "../model/reacharge.model";
 })
 export class RechargeComponent implements OnInit {
 
-  recharges=[new Recharge(),new Recharge(),new Recharge(),new Recharge(),new Recharge(),];
-  constructor() { }
+  recharges;
+  constructor(private operationService : OperationService) { }
 
   ngOnInit(): void {
+    this.getRecharges();
+  }
+
+  getRecharges(){
+
+    this.operationService.getOperationByCompteId(1)
+      .subscribe(data=>{
+        this.recharges=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
   }
 
 }

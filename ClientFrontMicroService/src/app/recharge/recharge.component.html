@@ -59,14 +59,16 @@
             <div class="panel-body" >
               <table *ngIf="recharges" class="table table-striped">
                 <tr>
-                  <th>Numero</th><th>Recharge</th><th>date</th>
+                  <th>de:</th><th>Recharge</th><th>date</th><th>numero:</th>
                 </tr>
 
-                <tr *ngFor="let p of recharges" >
-                  <td >{{p.numero}}</td>
-                  <td >{{p.montant}}</td>
-                  <td >{{p.date}}</td>
-                </tr>
+
+              <tr  *ngFor="let p of recharges._embedded.rechargeTelephones">
+                <td *ngIf="p.operationType=='R' ">{{ p.compteId }}</td>
+                <td *ngIf="p.operationType=='R'">{{ p.montant+' dh' }}</td>
+                <td *ngIf="p.operationType=='R'">{{ p.dateOperation }}</td>
+                <td *ngIf="p.operationType=='R'">{{p.numTel}}</td>
+              </tr>
               </table>
             </div>
 

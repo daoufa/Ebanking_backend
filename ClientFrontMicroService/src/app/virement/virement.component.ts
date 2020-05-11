@@ -27,11 +27,11 @@ export class VirementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-this.getClient();
+this.getVirements();
 this.getComptes();
   }
 
-  getClient(){
+  getVirements(){
 
     this.operationService.getOperationByCompteId(1)
       .subscribe(data=>{
@@ -62,7 +62,13 @@ this.getComptes();
     this.newVirement.dateOperation='10/02/2020';
 
     console.log(this.newVirement);
-   console.log(this.operationService.save(this.newVirement));
+   this.operationService.save(data)
+     .subscribe(data=>{
+       this.comptes=data;
+       console.log(data);
+     },err=>{
+       console.log(err);
+     });
   }
 
 
