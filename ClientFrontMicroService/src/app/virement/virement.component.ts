@@ -16,6 +16,7 @@ import {OperationService} from "../services/operation.service";
 export class VirementComponent implements OnInit {
 
   clients;
+  newVirement:Virement=new Virement();
   virements;
   comptes;
   compte;
@@ -53,6 +54,17 @@ this.getComptes();
         console.log(err);
       });
   }
+
+  onSaveVirement(data:any){
+    this.newVirement.compteId=1;
+    this.newVirement.montant=3000.0;
+    this.newVirement.destinataireCompteId=2;
+    this.newVirement.dateOperation='10/02/2020';
+
+    console.log(this.newVirement);
+   console.log(this.operationService.save(this.newVirement));
+  }
+
 
 
 }
