@@ -7,9 +7,10 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class ClientService {
-  public host: string = "http://localhost:8080/clients";
+  public host: string = "http://localhost:8080/clients/";
   // @ts-ignore
   constructor(private httpClient: HttpClient) {}
+
   public getClients(page: number, size: number) {
     return this.httpClient.get(this.host);
   }
@@ -39,6 +40,6 @@ export class ClientService {
 
   public getClient(clientid): Observable<Client> {
     // @ts-ignore
-    return this.httpClient.get("//localhost:8080/clients/" + clientid);
+    return this.httpClient.get(this.host + clientid);
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../services/client.service';
+import { Client } from '../model/client.model';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  clientId = 1;
+  client:Client;
+  constructor(private clientService : ClientService) { }
 
   ngOnInit(): void {
+    this.getClientInfos();
   }
 
+  getClientInfos(){
+    this.clientService.getClient(this.clientId).subscribe((data) =>{
+      this.client = data;
+      console.log(this.client);
+    },err =>{
+      console.log("we have a problem");
+    }
+    );
+  }
+ 
 }

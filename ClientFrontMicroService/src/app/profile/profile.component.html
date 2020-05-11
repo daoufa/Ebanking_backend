@@ -1,1 +1,35 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="container">
+        <div class="card bg-dark text-white p-3" id="div">
+            <p>
+                <label class="lb">{{ client.nom }} {{ client.prenom }}</label>
+            </p>
+        </div>
+    </div>
+    <p></p>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <label style="font-size: large;">Informations</label>
+                </div>
+                <table class="table table-striped" >
+                    <tbody>
+                        <tr >
+                            <td class="t">Code</td>
+                            <td>{{client.code}}</td>
+                        </tr>
+                        <tr >
+                            <td class="t">Email</td>
+                            <td>{{client.email}}</td>
+                        </tr>
+                        <tr >
+                            <td class="t">Telephone</td>
+                            <td>{{client.tel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
