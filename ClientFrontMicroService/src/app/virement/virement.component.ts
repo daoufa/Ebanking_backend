@@ -18,6 +18,9 @@ export class VirementComponent implements OnInit {
   clients;
   virements;
   comptes;
+  compte;
+  compteNum:number;
+  isEpargne: boolean = false;
 
   constructor(private operationService : OperationService ,private compteService : ComptesService) {
   }
@@ -37,6 +40,10 @@ this.getComptes();
         console.log(err);
       });
   }
+  isCourant(v:boolean){
+    this.isEpargne=!v;
+  }
+
   getComptes() {
     this.compteService.getComptesByClientId(1)
       .subscribe(data=>{
@@ -46,5 +53,6 @@ this.getComptes();
         console.log(err);
       });
   }
+
 
 }

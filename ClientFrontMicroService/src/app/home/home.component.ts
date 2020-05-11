@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   getComptes() {
+
     this.comptesService.getComptesByClientId(this.clientid).subscribe(
       (data) => {
         this.comptes = data;

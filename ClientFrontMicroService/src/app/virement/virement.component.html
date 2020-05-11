@@ -27,8 +27,21 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label">Transfert de :</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <div>
+                    <input type="radio" id="CE" name="Compte" value="Compte courant"
+                            (click)="this.isCourant(true)"  checked>
+                    <label for="CE">Compte courant</label>
+                    <input type="radio" id="CC" name="Compte" value="Compte eppargne"
+                           (click)="this.isCourant(false)" >
+                    <label for="CC">Compte epargne</label>
+
+
+                  </div>
+                  <select class="form-control" id="exampleFormControlSelect1" *ngIf="!isEpargne">
                     <option *ngFor="let c of comptes._embedded.compteCourants">{{ c.numCompte }}</option>
+                  </select>
+                  <select class="form-control" id="exampleFormControlSelect1" *ngIf="isEpargne">
+                    <option *ngFor="let c of comptes._embedded.compteEpargnes">{{ c.numCompte }}</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -45,18 +58,7 @@
                   Enregistrer
                 </button>
               </form>
-              <table *ngIf="clients" class="table table-striped">
-                <tr>
-                  <th>ID</th>
-                  <th>DES</th>
-                  <th>PRIX</th>
-                  <th>QTE</th>
-                </tr>
 
-                <tr *ngFor="let p of clients._embedded.clients">
-                  <td>{{ p.nom }}</td>
-                </tr>
-              </table>
             </div>
           </div>
         </div>
@@ -71,15 +73,17 @@
             <div class="panel-body">
               <table *ngIf="virements" class="table table-striped">
                 <tr>
+                  <th>de:</th>
                   <th>montant</th>
                   <th>date</th>
                   <th>vers :</th>
                 </tr>
 
-                <tr *ngFor="let p of virements._embedded.virements">
-                  <td>{{ p.montant }}</td>
-                  <td>{{ p.dateOperation }}</td>
-                  <td>123315438743543864</td>
+                <tr  *ngFor="let p of virements._embedded.virements">
+                  <td *ngIf="p.operationType=='V' ">{{ p.compteId }}</td>
+                  <td *ngIf="p.operationType=='V'">{{ p.montant }}</td>
+                  <td *ngIf="p.operationType=='V'">{{ p.dateOperation }}</td>
+                  <td *ngIf="p.operationType=='V'">{{p.destinataireCompteId}}</td>
                 </tr>
               </table>
             </div>
