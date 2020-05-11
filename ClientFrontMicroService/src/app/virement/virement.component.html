@@ -79,11 +79,11 @@
                   <th>vers :</th>
                 </tr>
 
-                <tr *ngFor="let p of virements._embedded.virements">
-                  <td>{{ p.compteId }}</td>
-                  <td>{{ p.montant }}</td>
-                  <td>{{ p.dateOperation }}</td>
-                  <td>{{123315438743543864}}</td>
+                <tr  *ngFor="let p of virements._embedded.virements">
+                  <td *ngIf="p.operationType=='V' ">{{ p.compteId }}</td>
+                  <td *ngIf="p.operationType=='V'">{{ p.montant }}</td>
+                  <td *ngIf="p.operationType=='V'">{{ p.dateOperation }}</td>
+                  <td *ngIf="p.operationType=='V'">{{p.destinataireCompteId}}</td>
                 </tr>
               </table>
             </div>
