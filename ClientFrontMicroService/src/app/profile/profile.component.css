@@ -1,0 +1,15 @@
+#div{
+    height: 150px;
+    border-radius: 30px;
+    vertical-align: bottom;
+}
+.lb{
+    font-size: xx-large;
+    color: white;
+    vertical-align: bottom;
+    font-family:Lucida Bright;
+}
+.t{
+    font-size: 30;
+    font-weight: bold;
+}

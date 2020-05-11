@@ -2,7 +2,7 @@ import {CompteEpargne} from "./compteEpargne.model";
 
 export class Client {
 
-  public id: number;
+  public code: number;
   public nom: string;
   public prenom: string;
   public email: string;
@@ -10,6 +10,7 @@ export class Client {
   public comptes: CompteEpargne[];
   public sexe: string;
   public tel: string;
+  public estSuspendu : boolean;
 
 }
 
