@@ -16,7 +16,7 @@ export class OperationService {
   }
 
   public getOperationById(id: number ) {
-    return this.httpClient.get(this.host + '/{id}');
+    return this.httpClient.get('http://localhost:8080/virements');
   }
   public getOperationByCompteId(cpteid: number ) {
     return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/operations');
@@ -29,7 +29,7 @@ export class OperationService {
   public save(data): Observable<Virement> {
     // @ts-ignore
 
-    return this.httpClient.post('http://localhost:8080/operations', data);
+    return this.httpClient.post('http://localhost:8080/virements', data);
   }
 
   public getResource(url): Observable<Virement> {
