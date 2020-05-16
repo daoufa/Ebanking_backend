@@ -1,10 +1,15 @@
-import {CompteEpargne} from "./compteEpargne.model";
+import { CompteEpargne } from "./compteEpargne.model";
 
 export class Recharge {
+  constructor(
+    public numTel: string,
+    public montant: number,
+    public date: Date = new Date(),
+    public compte: string,
+    public compteid: number
+  ) {}
 
-  public id: number;
-  public numero = 0o632302566;
-  public montant = 20;
-  public date = '10/02/2020';
-
+  setUrl(numCpt: any) {
+    this.compte = "http://localhost:8080/compteCourant/" + numCpt;
+  }
 }
