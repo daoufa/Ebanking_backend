@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {ComptesService} from '../services/comptes.service';
 import {Client} from '../model/client.model';
 import {OperationService} from '../services/operation.service';
+import {any} from "codelyzer/util/function";
 
 @Component({
   selector: 'app-virement',
@@ -15,42 +16,39 @@ import {OperationService} from '../services/operation.service';
 })
 export class VirementComponent implements OnInit {
 
-  clients;
+  v:Virement;
   compteId: number;
-  newVirement: Virement = new Virement();
+  date:Date;
   virements;
   comptes;
-  compte;
-  compteNum: number;
   isEpargne = false;
 
   constructor(private operationService: OperationService , private compteService: ComptesService) {
   }
 
   ngOnInit(): void {
+    this.getComptes();
 this.getVirements();
-this.getComptes();
+
   }
 
   getVirements() {
-
-    this.operationService.getOperationById(1)
+    this.operationService.getVirementsByCompteId(2)
       .subscribe(data => {
+        console.log(data);
         this.virements = data;
         console.log(data);
       }, err => {
         console.log(err);
       });
   }
-  isCourant(v: boolean) {
-    this.isEpargne = !v;
-  }
+
 
   getComptes() {
     this.compteService.getComptesByClientId(2)
       .subscribe(data => {
         this.comptes = data;
-        console.log(data);
+        console.log(this.comptes);
       }, err => {
         console.log(err);
       });

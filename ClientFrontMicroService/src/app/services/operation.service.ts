@@ -15,11 +15,16 @@ export class OperationService {
     return this.httpClient.get(this.host);
   }
 
-  public getOperationById(id: number ) {
-    return this.httpClient.get('http://localhost:8080/virements');
+  public getVirementById(id: number ) {
+    return this.httpClient.get('http://localhost:8080/virements/'+id);
   }
+
   public getOperationByCompteId(cpteid: number ) {
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/operations');
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
+  }
+
+  public getVirementsByCompteId(cpteid: number ) {
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
   }
   public deleteResource(url ) {
 
