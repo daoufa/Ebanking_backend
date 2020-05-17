@@ -1,84 +1,220 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="container" >
+<div class="container">
   <div class="row">
     <div class="col-sm">
       <div class="panel panel-default" id="outDiv">
-        <div class="panel-heading" >Recharger</div>
+        <div class="panel-heading">Recharger</div>
 
         <div class="panel-body">
-
           <div class="panel panel-default" id="inDiv">
-            <div class="panel-body"  >
-              <form #f="ngForm"  >
-                <div class="form-group" >
-                  <label class="control-label">Numero :</label>
-                  <input class="form-control" type="text" name="designation" placeholder="numero telephone"  ngModel>
-                </div>
+            <div class="panel-body">
+              <form #f="ngForm" (ngSubmit)="onSaveRecharge()">
+                <hr />
                 <div class="form-group">
-                  <label class="control-label">Operateur :</label>
-                  <select class="form-control"   >
-                    <option  >orange</option>
-                    <option  >iam</option>
-                    <option  >inwi</option>
-                  </select>
+                  <label class="control-label">Numero de telephone:</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="numTel"
+                    placeholder="numero telephone"
+                    [(ngModel)]="recharge.numTel"
+                  />
                 </div>
+                <!-- <div class="form-group">
+                  <label class="control-label">Operateur :</label>
+                  <select class="form-control">
+                    <option>orange</option>
+                    <option>iam</option>
+                    <option>inwi</option>
+                  </select>
+                </div> -->
 
                 <div class="form-group">
                   <label class="control-label">Recharge de :</label>
-                  <select class="form-control"  >
-                    <option  >5 dh</option>
-                    <option  >10 dh</option>
-                    <option  >20 dh</option>
-                    <option  >25 dh</option>
-                    <option  >50 dh</option>
-                    <option  >100 dh</option>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="montant"
+                    placeholder="numero telephone"
+                    [(ngModel)]="recharge.montant"
+                  />
+                  <label class="control-label">numero de compte :</label>
+                  <select
+                    *ngIf="comptes"
+                    class="form-control"
+                    name="compteid"
+                    [(ngModel)]="recharge.compteid"
+                  >
+                    <option
+                      *ngFor="
+                        let c of comptes._embedded.compteCourants;
+                        index as i
+                      "
+                      >{{ c.numCompte }}</option
+                    >
+                    <option
+                      *ngFor="
+                        let c1 of comptes._embedded.compteEpargnes;
+                        index as i1
+                      "
+                      value=""
+                      >{{ c1.numCompte }}</option
+                    >
                   </select>
                 </div>
 
-                <button class="btn btn-success"  type="submit">Effectuer recharge</button>
+                <button class="btn btn-success" type="submit">
+                  Effectuer recharge
+                </button>
               </form>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
 
-
     <div class="col-sm">
       <div class="panel panel-default">
-        <div class="panel-heading" >Historique des recharges</div>
+        <div class="panel-heading">Historique des recharges</div>
 
-        <div class="panel-body" style="height: 500px">
-
+        <div class="panel-body" style="height: 500px;">
           <div class="panel panel-default">
-            <div class="panel-body" >
-              <table *ngIf="recharges" class="table table-striped">
+            <div class="panel-body">
+              <table *ngIf="rechargesList" class="table table-striped">
                 <tr>
-                  <th>de:</th><th>Recharge</th><th>date</th><th>numero:</th>
+                  <!-- <th>de:</th> -->
+                  <th>Recharge</th>
+                  <th>date</th>
+                  <th>numero:</th>
                 </tr>
 
-
-              <tr  *ngFor="let p of recharges._embedded.rechargeTelephones">
-                <td *ngIf="p.operationType=='R' ">{{ p.compteId }}</td>
-                <td *ngIf="p.operationType=='R'">{{ p.montant+' dh' }}</td>
-                <td *ngIf="p.operationType=='R'">{{ p.dateOperation }}</td>
-                <td *ngIf="p.operationType=='R'">{{p.numTel}}</td>
-              </tr>
+                <tr
+                  *ngFor="let p of rechargesList._embedded.rechargeTelephones"
+                >
+                  <!-- <td *ngIf="p.operationType == 'R'">{{ p.compteId }}</td> -->
+                  <td>
+                    {{ p.montant + " dh" }}
+                  </td>
+                  <td>{{ p.date }}</td>
+                  <td>{{ p.numTel }}</td>
+                </tr>
               </table>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
   </div>
+  <!-- our bleu div -->
+  <!-- <div
+    class="card bg-primary text-white mb-3"
+    style="width: 120px; display: inline-block;"
+  >
+    <div class="card-header">200 DH</div>
+    <div class="card-body">
+      <h6 class="card-title">2020/12/15</h6>
+      <p class="card-text">
+        <small>0637411276</small>
+      </p>
+    </div>
+  </div> -->
+  <!-- colapse -->
+  <div class="container" id="compteContainer" *ngIf="comptes">
+    <div id="accordion">
+      <div
+        class="card"
+        *ngFor="
+          let c of comptes._embedded.compteCourants;
+          index as i;
+          first as f
+        "
+        style="opacity: 0.9;"
+      >
+        <div
+          class="card-header"
+          style="background-color: rgba(151, 148, 148, 0.842);"
+        >
+          <h5 style="display: flex; justify-content: center;">
+            <a
+              href="#collapse{{ i }}"
+              data-parent="#accordion"
+              data-toggle="collapse"
+              style="
+                color: rgb(197, 38, 38);
+                font-size: 25px;
+                font-weight: bold;
+              "
+            >
+              Numero de compte {{ c.numCompte }}
+            </a>
+          </h5>
+        </div>
 
+        <div
+          id="collapse{{ i }}"
+          [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
+        >
+          <!-- card -->
+          <div *ngIf="rechargesList">
+            <div
+              class="card bg-primary text-white m-4"
+              style="width: 300px; display: inline-block;"
+              *ngFor="let p of rechargesList._embedded.rechargeTelephones"
+            >
+              <div
+                class="card-header"
+                style="text-align: center; font-weight: bold;"
+              >
+                {{ p.montant + " DH" }}
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">
+                  {{ p.date | date: "MM/dd/yyyy 'à' h:mma" }}
+                  <p style="float: right;">{{ p.numTel }}</p>
+                </h6>
+              </div>
+            </div>
+          </div>
+          <!-- end card -->
+
+          <!-- <div class="card-body">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th scope="row">type du compte</th>
+                  <td>compte Courant</td>
+                </tr>
+                <tr>
+                  <th scope="row">date de creation</th>
+                  <td>{{ c.dateCreation }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Solde</th>
+                  <td>{{ c.solde }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">taux d'interets</th>
+                  <td>{{ c.tauxInterets }}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>
+                    <a routerLink="/comptes"
+                      >voir plus <i class="fas fa-arrow-alt-circle-right"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
