@@ -10,7 +10,7 @@ import { Client } from '../model/client.model';
 export class ProfileComponent implements OnInit {
 
   clientId = 1;
-  client:Client;
+  client:any;
   constructor(private clientService : ClientService) { }
 
   ngOnInit(): void {
@@ -26,5 +26,5 @@ export class ProfileComponent implements OnInit {
     }
     );
   }
- 
+
 }

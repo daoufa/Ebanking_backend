@@ -3,14 +3,15 @@ import {Observable} from 'rxjs';
 import {Client} from '../model/client.model';
 import {HttpClient} from '@angular/common/http';
 import {Virement} from '../model/virement.model';
-
+import {HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from "./authentication.service";
 @Injectable({
   providedIn: 'root'
 })
 export class OperationService {
   public host = 'http://localhost:8080/operations';
   // @ts-ignore
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService , ) {}
   public getOperations( ) {
     return this.httpClient.get(this.host);
   }
@@ -20,11 +21,14 @@ export class OperationService {
   }
 
   public getOperationByCompteId(cpteid: number ) {
+
+    let jwtToken=localStorage.getItem('token');
     return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
   }
 
   public getVirementsByCompteId(cpteid: number ) {
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
+    let jwtToken=localStorage.getItem('token');
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements',{headers:new HttpHeaders({'Authorization':jwtToken})});
   }
   public deleteResource(url ) {
 

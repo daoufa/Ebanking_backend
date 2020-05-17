@@ -23,14 +23,18 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  login() {
+  login(dataForm) {
+    console.log(dataForm);
     this.authenticationService
-      .authenticationService(this.username, this.password)
+      .login(dataForm)
       .subscribe(
         (result) => {
+          let jwtToken =result.headers.get('Authorization');
+          //console.log(result.headers.get('Authorization'));
+          this.authenticationService.saveToken(jwtToken);
           this.invalidLogin = false;
-          this.loginSuccess = true;
-          this.successMessage = "Login Successful.";
+         /* this.loginSuccess = true;
+          this.successMessage = "Login Successful.";*/
           this.router.navigate(["/home"]);
         },
         () => {
@@ -38,6 +42,11 @@ export class LoginComponent {
           this.loginSuccess = false;
         }
       );
+  }
+
+
+  saveToken(jwtToken:string){
+    localStorage.setItem('token',jwtToken);
   }
 
   // constructor(

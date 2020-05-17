@@ -13,11 +13,13 @@ import { VirementComponent } from './virement/virement.component';
 import { ComptesComponent } from './comptes/comptes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RechargeComponent } from './recharge/recharge.component';
+import {AuthenticationService} from "./services/authentication.service";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, LogoutComponent, VirementComponent, ComptesComponent, ProfileComponent, RechargeComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
