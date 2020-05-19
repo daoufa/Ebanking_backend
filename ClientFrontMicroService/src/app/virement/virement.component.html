@@ -27,32 +27,21 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label">Transfert de :</label>
-                  <div>
-                    <input type="radio" id="CE" name="Compte" value="Compte courant"
-                            (click)="this.isCourant(true)"  checked>
-                    <label for="CE">Compte courant</label>
-                    <input type="radio" id="CC" name="Compte" value="Compte eppargne"
-                           (click)="this.isCourant(false)" >
-                    <label for="CC">Compte epargne</label>
 
+                  <div>
+                    <select   class="form-control" id="exampleFormControlSelect1" *ngIf="!isEpargne" name="compte" [(ngModel)]="compteId">
+                      <option   *ngFor="let c of comptes._embedded.compteCourants" [ngValue]="c.numCompte">{{ c.numCompte }}</option>
+                    </select>
 
                   </div>
-                  <div>
-                    <select   class="form-control" id="exampleFormControlSelect1" *ngIf="!isEpargne" name="compteId">
-                      <option (select)="this.newVirement.compteId=c.numCompte"  *ngFor="let c of comptes._embedded.compteCourants">{{ c.numCompte }}</option>
-                    </select>
-                    <select  class="form-control" id="exampleFormControlSelect1" *ngIf="isEpargne" name="compteId">
-                      <option *ngFor="let c of comptes._embedded.compteEpargnes">{{ c.numCompte }}</option>
-                    </select>
-                  </div>
-
+                  <input type="hidden" name="date">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Vers :</label>
                   <input
                     class="form-control"
                     type="number"
-                    name="destinataireCompteId"
+                    name="destinataireCompte"
                     placeholder="numero de compte destinataire"
                     ngModel
                   />
@@ -74,7 +63,7 @@
         <div class="panel-body" style="height: 500px;">
           <div class="panel panel-default">
             <div class="panel-body">
-              <table *ngIf="virements" class="table table-striped">
+              <table  class="table table-striped">
                 <tr>
                   <th>de:</th>
                   <th>montant</th>
@@ -82,11 +71,11 @@
                   <th>vers :</th>
                 </tr>
 
-                <tr  *ngFor="let p of virements._embedded.virements">
-                  <td *ngIf="p.operationType=='V' ">{{ p.compteId }}</td>
-                  <td *ngIf="p.operationType=='V'">{{ p.montant }}</td>
-                  <td *ngIf="p.operationType=='V'">{{ p.dateOperation }}</td>
-                  <td *ngIf="p.operationType=='V'">{{p.destinataireCompteId}}</td>
+                <tr *ngFor=" let v of virements._embedded.virements" >
+                  <td >{{ v.compteId }}</td>
+                  <td >{{ v.montant }}</td>
+                  <td >{{ v.date }}</td>
+                  <td >{{ v.destCompteId }}</td>
                 </tr>
               </table>
             </div>

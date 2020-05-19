@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -14,14 +14,20 @@ export class RechargeTelephoneService {
   // }
 
   public getRechargeTelephones(numCpt) {
-    return this.httpClient.get(this.host + numCpt + "/rechargeTelephones");
+    let jwtToken = localStorage.getItem("token");
+
+    return this.httpClient.get(this.host + numCpt + "/rechargeTelephones", {
+      headers: new HttpHeaders({ Authorization: jwtToken }),
+    });
   }
 
   public SaveRecharge(data) {
-    console.log(data);
+    let jwtToken = localStorage.getItem("token");
+
     return this.httpClient.post(
       "http://localhost:8080/rechargeTelephones",
-      data
+      data,
+      { headers: new HttpHeaders({ Authorization: jwtToken }) }
     );
   }
 }

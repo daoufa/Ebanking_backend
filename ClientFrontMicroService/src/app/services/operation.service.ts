@@ -3,23 +3,32 @@ import {Observable} from 'rxjs';
 import {Client} from '../model/client.model';
 import {HttpClient} from '@angular/common/http';
 import {Virement} from '../model/virement.model';
-
+import {HttpHeaders} from '@angular/common/http';
+import {AuthenticationService} from "./authentication.service";
 @Injectable({
   providedIn: 'root'
 })
 export class OperationService {
   public host = 'http://localhost:8080/operations';
   // @ts-ignore
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService , ) {}
   public getOperations( ) {
     return this.httpClient.get(this.host);
   }
 
-  public getOperationById(id: number ) {
-    return this.httpClient.get(this.host + '/{id}');
+  public getVirementById(id: number ) {
+    return this.httpClient.get('http://localhost:8080/virements/'+id);
   }
+
   public getOperationByCompteId(cpteid: number ) {
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/operations');
+
+    let jwtToken=localStorage.getItem('token');
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
+  }
+
+  public getVirementsByCompteId(cpteid: number ) {
+    let jwtToken=localStorage.getItem('token');
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements',{headers:new HttpHeaders({'Authorization':jwtToken})});
   }
   public deleteResource(url ) {
 
@@ -29,7 +38,7 @@ export class OperationService {
   public save(data): Observable<Virement> {
     // @ts-ignore
 
-    return this.httpClient.post('http://localhost:8080/operations', data);
+    return this.httpClient.post('http://localhost:8080/virements', data);
   }
 
   public getResource(url): Observable<Virement> {

@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 mx-auto">
+      <div class="alert-danger" *ngIf="this.invalidLogin">
+        <strong>Bad credential...</strong>
+      </div>
       <div>
         <div class="myform form">
           <div class="logo mb-3">
@@ -8,7 +11,7 @@
               <h1>Login</h1>
             </div>
           </div>
-          <form #f="ngForm" role="form" (ngSubmit)="login()">
+          <form #f="ngForm" role="form" (ngSubmit)="login(f.value)">
             <div class="form-group">
               <label>Username</label>
               <input

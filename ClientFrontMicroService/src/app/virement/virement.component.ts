@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {CompteEpargne} from '../model/compteEpargne.model';
-import {Virement} from "../model/virement.model";
-import {ClientService} from "../services/client.service";
-import {htmlAstToRender3Ast} from "@angular/compiler/src/render3/r3_template_transform";
-import {HttpClient} from "@angular/common/http";
-import {ComptesService} from "../services/comptes.service";
-import {Client} from "../model/client.model";
-import {OperationService} from "../services/operation.service";
+import {Virement} from '../model/virement.model';
+import {ClientService} from '../services/client.service';
+import {htmlAstToRender3Ast} from '@angular/compiler/src/render3/r3_template_transform';
+import {HttpClient} from '@angular/common/http';
+import {ComptesService} from '../services/comptes.service';
+import {Client} from '../model/client.model';
+import {OperationService} from '../services/operation.service';
+import {any} from "codelyzer/util/function";
 
 @Component({
   selector: 'app-virement',
@@ -15,58 +16,53 @@ import {OperationService} from "../services/operation.service";
 })
 export class VirementComponent implements OnInit {
 
-  clients;
-  newVirement:Virement=new Virement();
+  v:Virement;
+  compteId: number;
+  date:Date;
   virements;
   comptes;
-  compte;
-  compteNum:number;
-  isEpargne: boolean = false;
+  isEpargne = false;
 
-  constructor(private operationService : OperationService ,private compteService : ComptesService) {
+  constructor(private operationService: OperationService , private compteService: ComptesService) {
   }
 
   ngOnInit(): void {
+    this.getComptes();
 this.getVirements();
-this.getComptes();
+
   }
 
-  getVirements(){
-
-    this.operationService.getOperationByCompteId(1)
-      .subscribe(data=>{
-        this.virements=data;
+  getVirements() {
+    this.operationService.getVirementsByCompteId(2)
+      .subscribe(data => {
         console.log(data);
-      },err=>{
+        this.virements = data;
+        console.log(data);
+      }, err => {
         console.log(err);
       });
   }
-  isCourant(v:boolean){
-    this.isEpargne=!v;
-  }
+
 
   getComptes() {
-    this.compteService.getComptesByClientId(1)
-      .subscribe(data=>{
-        this.comptes=data;
-        console.log(data);
-      },err=>{
+    this.compteService.getComptesByClientId(2)
+      .subscribe(data => {
+        this.comptes = data;
+        console.log(this.comptes);
+      }, err => {
         console.log(err);
       });
   }
 
-  onSaveVirement(data:any){
-    this.newVirement.compteId=1;
-    this.newVirement.montant=3000.0;
-    this.newVirement.destinataireCompteId=2;
-    this.newVirement.dateOperation='10/02/2020';
-
-    console.log(this.newVirement);
-   this.operationService.save(data)
-     .subscribe(data=>{
-       this.comptes=data;
+  onSaveVirement(data: any) {
+  data['date']=new Date();
+  data.compte = 'http://localhost:8080/comptes/' + this.compteId;
+  data.destinataireCompte = 'http://localhost:8080/comptes/' + data.destinataireCompte;
+  console.log(data.destinataireCompte);
+  this.operationService.save(data)
+     .subscribe(data => {
        console.log(data);
-     },err=>{
+     }, err => {
        console.log(err);
      });
   }

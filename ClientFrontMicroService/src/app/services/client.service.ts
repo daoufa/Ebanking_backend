@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Client } from "../model/client.model";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -12,7 +12,11 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {}
 
   public getClients(page: number, size: number) {
-    return this.httpClient.get(this.host);
+
+    let jwtToken=localStorage.getItem('token');
+
+    return this.httpClient.get(this.host,
+      {headers:new HttpHeaders({'Authorization':jwtToken})});
   }
   /* public getProductsByKeyword(mc:string,page:number,size:number ){
 
@@ -38,8 +42,10 @@ export class ClientService {
     return this.httpClient.put(this.host, data);
   }
 
-  public getClient(clientid): Observable<Client> {
+  public getClient(clientid) {
     // @ts-ignore
-    return this.httpClient.get(this.host + clientid);
+    let jwtToken=localStorage.getItem('token');
+
+    return this.httpClient.get(this.host + clientid,{headers:new HttpHeaders({'Authorization':jwtToken})});
   }
 }
