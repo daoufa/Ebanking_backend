@@ -63,7 +63,6 @@
                         let c1 of comptes._embedded.compteEpargnes;
                         index as i1
                       "
-                      value=""
                       >{{ c1.numCompte }}</option
                     >
                   </select>
@@ -136,6 +135,7 @@
         "
         style="opacity: 0.9;"
       >
+        <!-- {{ addcptCourantId(c.numCompte) }}{{ addcptEpargneId(i) }} -->
         <div
           class="card-header"
           style="background-color: rgba(151, 148, 148, 0.842);"
@@ -151,7 +151,10 @@
                 font-weight: bold;
               "
             >
-              Numero de compte {{ c.numCompte }}
+              <!-- (click)="getRecharges(c.numCompte)" -->
+              Numero de compte : {{ c.numCompte }}
+
+              <!-- {{ getRecharges(c.numCompte) }} -->
             </a>
           </h5>
         </div>
@@ -160,59 +163,31 @@
           id="collapse{{ i }}"
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
         >
-          <!-- card -->
-          <div *ngIf="rechargesList">
-            <div
-              class="card bg-primary text-white m-4"
-              style="width: 300px; display: inline-block;"
-              *ngFor="let p of rechargesList._embedded.rechargeTelephones"
-            >
+          <!-- {{ getRecharges(cptCourantIdList[i]) }} -->
+          <span *ngIf="getRecharges(c.numCompte)">
+            <!-- card -->
+            <div *ngIf="rechargesList">
               <div
-                class="card-header"
-                style="text-align: center; font-weight: bold;"
+                class="card bg-primary text-white m-4"
+                style="width: 300px; display: inline-block;"
+                *ngFor="let p of rechargesList._embedded.rechargeTelephones"
               >
-                {{ p.montant + " DH" }}
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">
-                  {{ p.date | date: "MM/dd/yyyy 'à' h:mma" }}
-                  <p style="float: right;">{{ p.numTel }}</p>
-                </h6>
+                <div
+                  class="card-header"
+                  style="text-align: center; font-weight: bold;"
+                >
+                  {{ p.montant + " DH" }}
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title">
+                    {{ p.date | date: "MM/dd/yyyy 'à' h:mma" }}
+                    <p style="float: right;">{{ p.numTel }}</p>
+                  </h6>
+                </div>
               </div>
             </div>
-          </div>
+          </span>
           <!-- end card -->
-
-          <!-- <div class="card-body">
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <th scope="row">type du compte</th>
-                  <td>compte Courant</td>
-                </tr>
-                <tr>
-                  <th scope="row">date de creation</th>
-                  <td>{{ c.dateCreation }}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Solde</th>
-                  <td>{{ c.solde }}</td>
-                </tr>
-                <tr>
-                  <th scope="row">taux d'interets</th>
-                  <td>{{ c.tauxInterets }}</td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td>
-                    <a routerLink="/comptes"
-                      >voir plus <i class="fas fa-arrow-alt-circle-right"></i
-                    ></a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
         </div>
       </div>
     </div>

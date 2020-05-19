@@ -9,7 +9,7 @@ export class Recharge {
     public compteid: number
   ) {}
 
-  setUrl(numCpt: any) {
-    this.compte = "http://localhost:8080/compteCourant/" + numCpt;
+  setUrl() {
+    this.compte = "http://localhost:8080/compteCourant/" + this.compteid;
   }
 }

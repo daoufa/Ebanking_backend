@@ -18,6 +18,7 @@ export class RechargeTelephoneService {
   }
 
   public SaveRecharge(data) {
+    console.log(data);
     return this.httpClient.post(
       "http://localhost:8080/rechargeTelephones",
       data
