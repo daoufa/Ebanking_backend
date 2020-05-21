@@ -6,12 +6,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="panel panel-default" id="outDiv">
-        <div class="panel-heading">Virements</div>
 
-        <div class="panel-body">
+  <div class="row">
+
+    <div class="col-sm" >
+      <div class="panel panel-default" id="outDiv">
+        <div class="panel-heading">Nouveau virement
+          <button id="modeButton" class="btn btn-info" type="submit" (click)="this.changeMode()">
+            {{this.modeName}}
+          </button></div>
+
+        <div class="panel-body" *ngIf="this.mode==1">
           <div class="panel panel-default" id="inDiv">
             <div class="panel-body">
               <form #f="ngForm" (ngSubmit)="onSaveVirement(f.value)">
@@ -54,34 +59,34 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="panel panel-default">
-        <div class="panel-heading">Historique des virements</div>
 
-        <div class="panel-body" style="height: 500px;">
+
+
+        <div class="panel-body" style="height: 500px;" *ngIf="this.mode==2">
           <div class="panel panel-default">
             <div class="panel-body">
-              <table  class="table table-striped">
-                <tr>
-                  <th>de:</th>
-                  <th>montant</th>
-                  <th>date</th>
-                  <th>vers :</th>
-                </tr>
+              <table  class="table table-hover">
+                <thead>
 
-                <tr *ngFor=" let v of virements._embedded.virements" >
+
+                <tr >
+                  <th scope="col">de:</th>
+                  <th scope="col">montant</th>
+                  <th scope="col">date</th>
+                  <th scope="col">vers :</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor=" let v of virements._embedded.virements" id="line">
                   <td >{{ v.compteId }}</td>
                   <td >{{ v.montant }}</td>
                   <td >{{ v.date }}</td>
                   <td >{{ v.destCompteId }}</td>
                 </tr>
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
