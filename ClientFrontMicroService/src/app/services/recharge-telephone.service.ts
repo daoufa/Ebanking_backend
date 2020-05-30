@@ -14,20 +14,21 @@ export class RechargeTelephoneService {
   // }
 
   public getRechargeTelephones(numCpt) {
-    let jwtToken = localStorage.getItem("token");
+  //  let jwtToken = localStorage.getItem("token");
 
-    return this.httpClient.get(this.host + numCpt + "/rechargeTelephones", {
-      headers: new HttpHeaders({ Authorization: jwtToken }),
-    });
+    return this.httpClient.get(this.host + numCpt + "/rechargeTelephones"//, {
+   //   headers: new HttpHeaders({ Authorization: jwtToken }),
+    //}
+    );
   }
 
   public SaveRecharge(data) {
-    let jwtToken = localStorage.getItem("token");
+  //  let jwtToken = localStorage.getItem("token");
 
     return this.httpClient.post(
       "http://localhost:8080/rechargeTelephones",
-      data,
-      { headers: new HttpHeaders({ Authorization: jwtToken }) }
+      data//,
+      //{ headers: new HttpHeaders({ Authorization: jwtToken }) }
     );
   }
 }

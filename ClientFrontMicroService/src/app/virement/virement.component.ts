@@ -22,6 +22,8 @@ export class VirementComponent implements OnInit {
   virements;
   comptes;
   isEpargne = false;
+  mode:number=1;
+  modeName:string='Historique';
 
   constructor(private operationService: OperationService , private compteService: ComptesService) {
   }
@@ -67,6 +69,15 @@ this.getVirements();
      });
   }
 
-
+  changeMode(){
+    if(this.mode==1){
+      this.mode=2;
+      this.modeName='Nouveau virement';
+    }
+    else{
+      this.mode=1;
+      this.modeName='Historique';
+    }
+  }
 
 }
