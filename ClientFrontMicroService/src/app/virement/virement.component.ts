@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {CompteEpargne} from '../model/compteEpargne.model';
 import {Virement} from '../model/virement.model';
-import {ClientService} from '../services/client.service';
 import {htmlAstToRender3Ast} from '@angular/compiler/src/render3/r3_template_transform';
 import {HttpClient} from '@angular/common/http';
 import {ComptesService} from '../services/comptes.service';
-import {Client} from '../model/client.model';
 import {OperationService} from '../services/operation.service';
-import {any} from "codelyzer/util/function";
+import {CompteCourant} from '../model/CompteCourant';
+import {CompteEpargne} from '../model/CompteEpargne';
+import {DatePipe} from '@angular/common';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-virement',
@@ -16,21 +16,28 @@ import {any} from "codelyzer/util/function";
 })
 export class VirementComponent implements OnInit {
 
-  v:Virement;
+  v: Virement;
   compteId: number;
-  date:Date;
+  compte: any;
+  destCompte: any;
+  date: Date;
   virements;
   comptes;
+  cptType: string;
+  cptDestType: string;
+
+
+  res: any;
   isEpargne = false;
-  mode:number=1;
-  modeName:string='Historique';
+  mode = 1;
+  modeName = 'Historique';
 
   constructor(private operationService: OperationService , private compteService: ComptesService) {
   }
 
   ngOnInit(): void {
     this.getComptes();
-this.getVirements();
+    this.getVirements();
 
   }
 
@@ -56,27 +63,55 @@ this.getVirements();
       });
   }
 
-  onSaveVirement(data: any) {
-  data['date']=new Date();
-  data.compte = 'http://localhost:8080/comptes/' + this.compteId;
-  data.destinataireCompte = 'http://localhost:8080/comptes/' + data.destinataireCompte;
-  console.log(data.destinataireCompte);
-  this.operationService.save(data)
+  async getCompte(num: any) {
+    let cpt: string;
+   await this.compteService.getCompte(num)
+      .subscribe(data => {
+        if (data['epargne'] == false) { cpt = 'cc';  } else { cpt = 'ce'; }
+
+      }, err => {
+        console.log(err);
+      });
+    return cpt;
+  }
+
+  async  onSaveVirement(data: any) {
+
+  this.v = new Virement().deserialize(data);
+  this.v.date = new Date();
+  // this.datePipe.transform(this.v.date, 'MM/dd/yyyy');
+  this.res = JSON.stringify(this.v);
+  let obj = JSON.parse(this.res);
+
+
+  this.cptType = await this.getCompte(data.compte);
+  this.cptDestType = await this.getCompte(data.destinataireCompte);
+  var type1:string;
+  var type2:string;
+
+  if(this.cptType=='cc') type1='cc';
+  else type1='ce';
+    if(this.cptDestType=='cc') type2='cc';
+    else type2='ce';
+
+  obj.compte = {numCompte: data.compte, type:type1};
+  obj.destinataireCompte = {numCompte: data.destinataireCompte, type:type2};
+
+  this.operationService.save(obj)
      .subscribe(data => {
-       console.log(data);
+       // console.log(data);
      }, err => {
        console.log(err);
      });
   }
 
-  changeMode(){
-    if(this.mode==1){
-      this.mode=2;
-      this.modeName='Nouveau virement';
-    }
-    else{
-      this.mode=1;
-      this.modeName='Historique';
+  changeMode() {
+    if (this.mode == 1) {
+      this.mode = 2;
+      this.modeName = 'Nouveau virement';
+    } else {
+      this.mode = 1;
+      this.modeName = 'Historique';
     }
   }
 

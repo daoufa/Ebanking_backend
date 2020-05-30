@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Compte } from '../model/compte.model';
 import { ComptesService } from '../services/comptes.service';
 
 @Component({
@@ -14,16 +13,16 @@ export class ComptesComponent implements OnInit {
 
   ngOnInit(): void {
     this.consulterCompte;
-  } 
+  }
 
-  consulterCompte(numCpt){
-    this.compteService.getCompte(numCpt).subscribe(data => {
+ async consulterCompte(numCpt){
+   /* await   this.compteService.getCompte(numCpt).subscribe(data => {
       this.compte = data;
       console.log(data);
     },err =>{
       console.log(err);
-    });
-    
+    });*/
+
   }
 
 }

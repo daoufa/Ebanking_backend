@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Client} from '../model/client.model';
 import {HttpClient} from '@angular/common/http';
 import {Virement} from '../model/virement.model';
 import {HttpHeaders} from '@angular/common/http';
 import {AuthenticationService} from "./authentication.service";
+import {ComptesService} from "./comptes.service";
 @Injectable({
   providedIn: 'root'
 })
 export class OperationService {
   public host = 'http://localhost:8080/operations';
   // @ts-ignore
-  constructor(private httpClient: HttpClient, private authService: AuthenticationService , ) {}
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService , private comptesService:ComptesService) {}
   public getOperations( ) {
     return this.httpClient.get(this.host);
   }
@@ -23,12 +23,12 @@ export class OperationService {
   public getOperationByCompteId(cpteid: number ) {
 
     let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements');
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virementsOut');
   }
 
   public getVirementsByCompteId(cpteid: number ) {
     let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virements',{headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});
   }
   public deleteResource(url ) {
 
@@ -37,8 +37,7 @@ export class OperationService {
 
   public save(data): Observable<Virement> {
     // @ts-ignore
-
-    return this.httpClient.post('http://localhost:8080/virements', data);
+    return this.httpClient.post('http://localhost:8080/saveVirements', data);
   }
 
   public getResource(url): Observable<Virement> {
