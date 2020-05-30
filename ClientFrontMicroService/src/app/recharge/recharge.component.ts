@@ -3,6 +3,7 @@ import { RechargeTelephoneService } from "../services/recharge-telephone.service
 import { Recharge } from "../model/reacharge.model";
 import { ComptesService } from "../services/comptes.service";
 import { Compte } from "../model/compte.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-recharge",
@@ -12,21 +13,25 @@ import { Compte } from "../model/compte.model";
 export class RechargeComponent implements OnInit {
   listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
-  recharge = new Recharge("", 0.0, new Date(), "", 0);
+  recharge = new Recharge("", null, new Date(), "", null);
   clientid = 1;
   ListRechargesCmptsCourants = [];
   cptIdList = [];
 
   constructor(
     private rechargeTelephone: RechargeTelephoneService,
-    private comptesService: ComptesService
+    private comptesService: ComptesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getComptes();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
   }
 
-  getListRecharges() {
+  setListRecharges() {
     for (let id in this.cptIdList) {
       this.rechargeTelephone
         .getRechargeTelephones(this.cptIdList[id])
@@ -62,6 +67,7 @@ export class RechargeComponent implements OnInit {
     this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigateByUrl("/recharge");
       },
       (err) => {
         console.log(err);
@@ -98,6 +104,6 @@ export class RechargeComponent implements OnInit {
       i++;
     }
     console.log(this.cptIdList);
-    this.getListRecharges();
+    this.setListRecharges();
   }
 }
