@@ -164,29 +164,29 @@
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
         >
           <!-- {{ getRecharges(cptCourantIdList[i]) }} -->
-          <span *ngIf="getRecharges(c.numCompte)">
-            <!-- card -->
-            <div *ngIf="rechargesList">
+          <!-- <span *ngIf="getRecharges(c.numCompte)"> -->
+          <!-- card -->
+          <div *ngIf="rechargesList">
+            <div
+              class="card bg-primary text-white m-4"
+              style="width: 300px; display: inline-block;"
+              *ngFor="let p of rechargesList._embedded.rechargeTelephones"
+            >
               <div
-                class="card bg-primary text-white m-4"
-                style="width: 300px; display: inline-block;"
-                *ngFor="let p of rechargesList._embedded.rechargeTelephones"
+                class="card-header"
+                style="text-align: center; font-weight: bold;"
               >
-                <div
-                  class="card-header"
-                  style="text-align: center; font-weight: bold;"
-                >
-                  {{ p.montant + " DH" }}
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">
-                    {{ p.date | date: "MM/dd/yyyy 'à' h:mma" }}
-                    <p style="float: right;">{{ p.numTel }}</p>
-                  </h6>
-                </div>
+                {{ p.montant + " DH" }}
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">
+                  {{ p.date | date: "MM/dd/yyyy 'à' h:mma" }}
+                  <p style="float: right;">{{ p.numTel }}</p>
+                </h6>
               </div>
             </div>
-          </span>
+          </div>
+          <!-- </span> -->
           <!-- end card -->
         </div>
       </div>
