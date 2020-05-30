@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { stringify } from "querystring";
@@ -14,22 +14,18 @@ export class ComptesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getComptesByClientId(numclient:number) {
-
-    let jwtToken=localStorage.getItem('token');
+  getComptesByClientId(numclient: number) {
+    // let jwtToken=localStorage.getItem('token');
 
     return this.httpClient.get(
-      "http://localhost:8080/clients/" + numclient + "/comptes",
-      {headers:new HttpHeaders({'Authorization':jwtToken})}
+      "http://localhost:8080/clients/" + numclient + "/comptes"
+      // {headers:new HttpHeaders({'Authorization':jwtToken})}
     );
   }
-  getComptesByOperationId(numOperation:number) {
-    return this.httpClient.get(
-      "http://localhost:8080/operations/1/compte"
-    );
+  getComptesByOperationId(numOperation: number) {
+    return this.httpClient.get("http://localhost:8080/operations/1/compte");
   }
    getCompte(numCpt) {
     return this.httpClient.get("http://localhost:8080/comptes/" + numCpt);
   }
-
 }

@@ -63,17 +63,6 @@ export class VirementComponent implements OnInit {
       });
   }
 
-  async getCompte(num: any) {
-    let cpt: string;
-   await this.compteService.getCompte(num)
-      .subscribe(data => {
-        if (data['epargne'] == false) { cpt = 'cc';  } else { cpt = 'ce'; }
-
-      }, err => {
-        console.log(err);
-      });
-    return cpt;
-  }
 
   async  onSaveVirement(data: any) {
 
@@ -84,18 +73,9 @@ export class VirementComponent implements OnInit {
   let obj = JSON.parse(this.res);
 
 
-  this.cptType = await this.getCompte(data.compte);
-  this.cptDestType = await this.getCompte(data.destinataireCompte);
-  var type1:string;
-  var type2:string;
 
-  if(this.cptType=='cc') type1='cc';
-  else type1='ce';
-    if(this.cptDestType=='cc') type2='cc';
-    else type2='ce';
-
-  obj.compte = {numCompte: data.compte, type:type1};
-  obj.destinataireCompte = {numCompte: data.destinataireCompte, type:type2};
+  obj.compte = {numCompte: data.compte, type:"cc"};
+  obj.destinataireCompte = {numCompte: data.destinataireCompte, type:"cc"};
 
   this.operationService.save(obj)
      .subscribe(data => {

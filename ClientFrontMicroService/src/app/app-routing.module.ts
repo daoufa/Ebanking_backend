@@ -6,6 +6,7 @@ import { VirementComponent } from "./virement/virement.component";
 import { ComptesComponent } from "./comptes/comptes.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { RechargeComponent } from "./recharge/recharge.component";
+import { config } from "rxjs";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
