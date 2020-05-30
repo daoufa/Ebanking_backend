@@ -10,17 +10,12 @@ import { Compte } from "../model/compte.model";
   styleUrls: ["./recharge.component.css"],
 })
 export class RechargeComponent implements OnInit {
-  rechargesList;
-  // comptes: Compte[];
+  listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
   recharge = new Recharge("", 0.0, new Date(), "", 0);
-  numCpt = 2;
   clientid = 1;
-  cptCourantIdList = [];
-  cptEpargneIdList = [];
-  // cptIdList = [];
-  rechargesComptesList = new Map();
-  index = 0;
+  ListRechargesCmptsCourants = [];
+  cptIdList = [];
 
   constructor(
     private rechargeTelephone: RechargeTelephoneService,
@@ -28,49 +23,39 @@ export class RechargeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getRecharges();
     this.getComptes();
   }
 
-  // getRecharges() {
-  //   this.rechargeTelephone.getRechargeTelephones(this.numCpt).subscribe(
-  //     (data) => {
-  //       this.rechargesList = data;
-  //       console.log(data);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
-
-  getRecharges(value) {
-    this.rechargeTelephone.getRechargeTelephones(value).subscribe(
-      (data) => {
-        this.rechargesList = data;
-        console.log(data);
-        return true;
-      },
-      (err) => {
-        console.log(err);
-        return false;
-      }
-    );
+  getListRecharges() {
+    for (let id in this.cptIdList) {
+      this.rechargeTelephone
+        .getRechargeTelephones(this.cptIdList[id])
+        .subscribe(
+          (data) => {
+            let i = 0;
+            for (let c in data["_embedded"]["rechargeTelephones"]) {
+              let date = data["_embedded"]["rechargeTelephones"][i]["date"];
+              let montant =
+                data["_embedded"]["rechargeTelephones"][i]["montant"];
+              let numtel = data["_embedded"]["rechargeTelephones"][i]["numTel"];
+              let recharge = new Recharge(
+                numtel,
+                montant,
+                date,
+                "",
+                Number(this.cptIdList[id])
+              );
+              this.listRecharges.push(recharge);
+              i++;
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    }
+    console.log(this.listRecharges);
   }
-
-  // getRecharges() {
-  //   for (let id in this.cptIdList) {
-  //     this.rechargeTelephone.getRechargeTelephones(id).subscribe(
-  //       (data) => {
-  //         this.rechargesComptesList.set(id, data);
-  //       },
-  //       (err) => {
-  //         console.log(err);
-  //       }
-  //     );
-  //   }
-  //   console.log(this.rechargesComptesList);
-  // }
 
   onSaveRecharge() {
     this.recharge.setUrl();
@@ -89,11 +74,7 @@ export class RechargeComponent implements OnInit {
       (data) => {
         this.comptes = data;
         console.log(data);
-        this.setListCptsCourantId();
-        console.log(this.cptCourantIdList);
-        this.setListCptsEpargneId();
-        console.log(this.cptEpargneIdList);
-        // this.setListCptsId();
+        this.setListCptsId();
       },
       (err) => {
         console.log("getComptes Error");
@@ -101,40 +82,22 @@ export class RechargeComponent implements OnInit {
     );
   }
 
-  setListCptsCourantId() {
+  setListCptsId() {
     let i = 0;
     for (let c in this.comptes["_embedded"]["compteCourants"]) {
-      this.cptCourantIdList.push(
+      this.cptIdList.push(
         this.comptes["_embedded"]["compteCourants"][i]["numCompte"]
       );
       i++;
     }
-  }
-
-  setListCptsEpargneId() {
-    let i = 0;
+    i = 0;
     for (let c in this.comptes["_embedded"]["compteEpargnes"]) {
-      this.cptEpargneIdList.push(
+      this.cptIdList.push(
         this.comptes["_embedded"]["compteEpargnes"][i]["numCompte"]
       );
       i++;
     }
+    console.log(this.cptIdList);
+    this.getListRecharges();
   }
-
-  // setListCptsId() {
-  //   let i = 0;
-  //   for (let c in this.comptes["_embedded"]["compteCourants"]) {
-  //     this.cptIdList.push(
-  //       this.comptes["_embedded"]["compteCourants"][i]["numCompte"]
-  //     );
-  //     i++;
-  //   }
-  //   i = 0;
-  //   for (let c in this.comptes["_embedded"]["compteEpargnes"]) {
-  //     this.cptIdList.push(
-  //       this.comptes["_embedded"]["compteEpargnes"][i]["numCompte"]
-  //     );
-  //     i++;
-  //   }
-  // }
 }
