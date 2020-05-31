@@ -1,58 +1,40 @@
-<nav id="mainnav" class="navbar navbar-expand-sm navbar-light bg-light bg-dark">
-  <div class="container" id="first">
-    <a class="navbar-brand" href="#"
-      ><img src="/assets/images/ebanking.png"
-    /></a>
-    <button
-      class="navbar-toggler"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-    >
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/images/ebanking.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/home">Home
+
+          </a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><i class="fas fa-user-times"></i> Logout</a
-          >
+          <a class="nav-link" routerLink="/virement">Virements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/recharge">Recharges</a>
+        </li>
+        <li class="dropdown" class="nav-item">
+          <a class="nav-link"  routerLink="/comptes">Comptes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link aHover" routerLink="/profiles">Profile</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container sticky-top mt-3 mb-5" id="headerDiv">
-  <header id="main-header">
-    <ul class="nav nav-fill nav-pills">
-      <li class="nav-item">
-        <a class="nav-link aHover" id="day" routerLink="/home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link aHover" routerLink="/virement">Virment Bancaire</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link aHover" id="day" routerLink="/recharge"
-          >Recharge Telephonique</a
-        >
-      </li>
 
 
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" >Gestion de comptes
-       </a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/comptes">Informations</a></li>
-          <li><a href="#">Page 2</a></li>
-        </ul>
-      </li>
 
-      <li class="nav-item">
-        <a class="nav-link aHover" routerLink="/profiles"
-          ><span id="profile-icon" class="fas fa-user-circle fa-lg"></span
-        ></a>
-      </li>
-    </ul>
-  </header>
-</div>
+
+
+
 <router-outlet> </router-outlet>
