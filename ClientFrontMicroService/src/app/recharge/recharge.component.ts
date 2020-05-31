@@ -15,7 +15,6 @@ export class RechargeComponent implements OnInit {
   comptes;
   recharge = new Recharge("", null, new Date(), "", null);
   clientid = 1;
-  ListRechargesCmptsCourants = [];
   cptIdList = [];
 
   constructor(
@@ -59,14 +58,13 @@ export class RechargeComponent implements OnInit {
           }
         );
     }
-    console.log(this.listRecharges);
+    this.listRecharges.shift();
   }
 
   onSaveRecharge() {
     this.recharge.setUrl();
     this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
       (res) => {
-        console.log(res);
         this.router.navigateByUrl("/recharge");
       },
       (err) => {
@@ -79,7 +77,6 @@ export class RechargeComponent implements OnInit {
     this.comptesService.getComptesByClientId(this.clientid).subscribe(
       (data) => {
         this.comptes = data;
-        console.log(data);
         this.setListCptsId();
       },
       (err) => {
@@ -103,7 +100,7 @@ export class RechargeComponent implements OnInit {
       );
       i++;
     }
-    console.log(this.cptIdList);
+    console.log("comptes ids : " + this.cptIdList);
     this.setListRecharges();
   }
 }

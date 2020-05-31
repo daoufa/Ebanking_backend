@@ -9,7 +9,7 @@ import { ClientService } from "../services/client.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  @Input() public clientid = 1;
+  public clientid = 1;
   client;
   comptes;
   constructor(
@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   }
 
   getComptes() {
-
     this.comptesService.getComptesByClientId(this.clientid).subscribe(
       (data) => {
         this.comptes = data;
