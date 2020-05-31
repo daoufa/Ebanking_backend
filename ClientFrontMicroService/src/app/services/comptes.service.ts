@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Compte } from "../model/compte.model";
 import { map } from "rxjs/operators";
 import { stringify } from "querystring";
 
@@ -11,7 +10,7 @@ import { stringify } from "querystring";
 export class ComptesService {
   comptes;
 
-  private host = "http://localhost:8080/clients/1/comptes/";
+  private host = "http://localhost:8080/comptes/";
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +25,7 @@ export class ComptesService {
   getComptesByOperationId(numOperation: number) {
     return this.httpClient.get("http://localhost:8080/operations/1/compte");
   }
-  getCompte(numCpt) {
-    return this.httpClient.get(this.host + numCpt.numero);
+   getCompte(numCpt) {
+    return this.httpClient.get("http://localhost:8080/comptes/" + numCpt);
   }
 }

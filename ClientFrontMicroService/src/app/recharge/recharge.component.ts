@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { RechargeTelephoneService } from "../services/recharge-telephone.service";
 import { Recharge } from "../model/reacharge.model";
 import { ComptesService } from "../services/comptes.service";
-import { Compte } from "../model/compte.model";
+
+//import { Compte } from "../model/compte.model";
 import { Router } from "@angular/router";
 
 @Component({
