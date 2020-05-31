@@ -9,7 +9,7 @@ import {ComptesService} from "./comptes.service";
   providedIn: 'root'
 })
 export class OperationService {
-  public host = 'http://localhost:8080/operations';
+  public host = 'http://localhost:8083/operations';
   // @ts-ignore
   constructor(private httpClient: HttpClient, private authService: AuthenticationService , private comptesService:ComptesService) {}
   public getOperations( ) {
@@ -17,18 +17,18 @@ export class OperationService {
   }
 
   public getVirementById(id: number ) {
-    return this.httpClient.get('http://localhost:8080/virements/'+id);
+    return this.httpClient.get('http://localhost:8083/virements/'+id);
   }
 
   public getOperationByCompteId(cpteid: number ) {
 
     let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virementsOut');
+    return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut');
   }
 
   public getVirementsByCompteId(cpteid: number ) {
     let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get('http://localhost:8080/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});
   }
   public deleteResource(url ) {
 
@@ -37,7 +37,7 @@ export class OperationService {
 
   public save(data): Observable<Virement> {
     // @ts-ignore
-    return this.httpClient.post('http://localhost:8080/saveVirements', data);
+    return this.httpClient.post('http://localhost:8083/saveVirements', data);
   }
 
   public getResource(url): Observable<Virement> {

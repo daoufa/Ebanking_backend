@@ -10,7 +10,7 @@ import { stringify } from "querystring";
 export class ComptesService {
   comptes;
 
-  private host = "http://localhost:8080/comptes/";
+  private host = "http://localhost:8083/comptes/";
 
   constructor(private httpClient: HttpClient) {}
 
@@ -18,14 +18,14 @@ export class ComptesService {
     // let jwtToken=localStorage.getItem('token');
 
     return this.httpClient.get(
-      "http://localhost:8080/clients/" + numclient + "/comptes"
+      "http://localhost:8083/clients/" + numclient + "/comptes"
       // {headers:new HttpHeaders({'Authorization':jwtToken})}
     );
   }
   getComptesByOperationId(numOperation: number) {
-    return this.httpClient.get("http://localhost:8080/operations/1/compte");
+    return this.httpClient.get("http://localhost:8083/operations/1/compte");
   }
    getCompte(numCpt) {
-    return this.httpClient.get("http://localhost:8080/comptes/" + numCpt);
+    return this.httpClient.get("http://localhost:8083/comptes/" + numCpt);
   }
 }

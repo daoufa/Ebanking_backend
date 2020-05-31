@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root",
 })
 export class RechargeTelephoneService {
-  public host: string = "http://localhost:8080/comptes/";
+  public host: string = "http://localhost:8083/comptes/";
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +26,7 @@ export class RechargeTelephoneService {
     // let jwtToken = localStorage.getItem("token");
 
     return this.httpClient.post(
-      "http://localhost:8080/rechargeTelephones",
+      "http://localhost:8083/rechargeTelephones",
       data
       // { headers: new HttpHeaders({ Authorization: jwtToken }) }
     );

@@ -13,13 +13,13 @@ export class AuthenticationService {
   public password: String;
   private jwtToken: string;
   private roles: Array<any> = [];
-  private host = 'http://localhost:8080';
+  private host = 'http://localhost:8083';
 
   constructor(private http: HttpClient) {}
 
   authenticationService(username: String, password: String) {
     return this.http
-      .get(`http://localhost:8080/auth`, {
+      .get(`http://localhost:8083/auth`, {
         headers: {
           authorization: this.createBasicAuthToken(username, password),
         },

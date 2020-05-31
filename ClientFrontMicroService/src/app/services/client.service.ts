@@ -7,7 +7,7 @@ import {Client} from "../model/client";
   providedIn: "root",
 })
 export class ClientService {
-  public host: string = "http://localhost:8080/clients/";
+  public host: string = "http://localhost:8083/clients/";
   // @ts-ignore
   constructor(private httpClient: HttpClient) {}
 
