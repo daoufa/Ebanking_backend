@@ -63,7 +63,7 @@ export class RechargeComponent implements OnInit {
   }
 
   onSaveRecharge() {
-    this.recharge.setUrl();
+    this.recharge.setCompteObject();
     this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
       (res) => {
         this.router.navigateByUrl("/recharge");
