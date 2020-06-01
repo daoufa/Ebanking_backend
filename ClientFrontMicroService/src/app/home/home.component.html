@@ -68,20 +68,20 @@
           <table class="table table-striped">
             <tbody>
               <tr>
-                <th scope="row">type du compte</th>
+                <th scope="row">Type du compte</th>
                 <td>compte Courant</td>
               </tr>
               <tr>
-                <th scope="row">date de creation</th>
-                <td>{{ c.dateCreation }}</td>
+                <th scope="row">Date de creation</th>
+                <td>{{ c.dateCreation | date: "MM/dd/yyyy à h:mma"}}</td>
               </tr>
               <tr>
                 <th scope="row">Solde</th>
                 <td>{{ c.solde }}</td>
               </tr>
               <tr>
-                <th scope="row">taux d'interets</th>
-                <td>{{ c.tauxInterets }}</td>
+                <th scope="row">Decouvert</th>
+                <td>{{ c.decouvert }}</td>
               </tr>
               <tr>
                 <th scope="row"></th>
@@ -129,19 +129,19 @@
           <table class="table table-striped">
             <tbody>
               <tr>
-                <th scope="row">type du compte</th>
+                <th scope="row">Type du compte</th>
                 <td>compte Epargne</td>
               </tr>
               <tr>
-                <th scope="row">date de creation</th>
-                <td>{{ c1.dateCreation }}</td>
+                <th scope="row">Date de creation</th>
+                <td>{{ c1.dateCreation |  date: "MM/dd/yyyy à h:mma"}}</td>
               </tr>
               <tr>
                 <th scope="row">Solde</th>
                 <td>{{ c1.solde }}</td>
               </tr>
               <tr>
-                <th scope="row">taux d'interets</th>
+                <th scope="row">Taux d'interets</th>
                 <td>{{ c1.tauxInterets }}</td>
               </tr>
               <tr>

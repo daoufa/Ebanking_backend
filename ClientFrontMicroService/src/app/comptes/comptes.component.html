@@ -1,7 +1,7 @@
 <p></p>
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">Consultation d'un compte</div>
+        <div class="panel-heading"><h4>Consultation d'un compte</h4></div>
         <div class="panel-body">
             <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
                 <div class="form-group">
@@ -17,7 +17,7 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Information sur le compte</div>
+        <div class="panel-heading"><h4>Information sur le compte</h4></div>
         <div class="panel-body" *ngIf="compte">
             <div>
                 <label>Client :</label>

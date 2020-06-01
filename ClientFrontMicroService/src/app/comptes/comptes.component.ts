@@ -25,6 +25,7 @@ export class ComptesComponent implements OnInit {
       console.log(data);
     },err =>{
       this.message = "Pas de compte de ce numero";
+      this.compte = null;
     });
 
   }
