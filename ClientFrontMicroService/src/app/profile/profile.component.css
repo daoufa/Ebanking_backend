@@ -1,7 +1,10 @@
 #div{
     height: 150px;
-    border-radius: 30px;
     vertical-align: bottom;
+}
+.padding-0{
+    padding-right:0;
+    padding-left:0;
 }
 .lb{
     font-size: xx-large;
@@ -13,4 +16,56 @@
 .t{
     font-size: 30;
     font-weight: bold;
+    border-color: white;
 }
+#img{
+    background-image: url("../../assets/images/client.jpg");
+    background-size: cover;
+    border-radius: 20px;
+    margin-right: 0;
+    height: 540px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.8);;
+}
+
+#inf{
+    margin-top: 14px;
+    
+}
+
+.row{
+    margin-top: 20px;
+}
+
+.container{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+@font-face{
+    font-family: Josefin Sans;
+    src: url(../../assets/fonts/JosefinSans-VariableFont_wght.ttf);
+}
+
+.table{
+    border:black;
+  }
+.table > tbody > tr > td{
+    border:black;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.table > tbody > tr > th{
+    border:black;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.h1{
+    margin-bottom: 30px;
+}
+
+.panel-default{
+    border-radius: 0;
+    height: 508px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.8);;
+}
+
