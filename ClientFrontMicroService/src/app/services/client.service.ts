@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Client} from "../model/client";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Client } from "../model/client";
 
 @Injectable({
   providedIn: "root",
@@ -12,11 +12,11 @@ export class ClientService {
   constructor(private httpClient: HttpClient) {}
 
   public getClients(page: number, size: number) {
+    let jwtToken = localStorage.getItem("token");
 
-    let jwtToken=localStorage.getItem('token');
-
-    return this.httpClient.get(this.host,
-      {headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get(this.host, {
+      headers: new HttpHeaders({ Authorization: jwtToken }),
+    });
   }
   /* public getProductsByKeyword(mc:string,page:number,size:number ){
 
@@ -44,8 +44,11 @@ export class ClientService {
 
   public getClient(clientid) {
     // @ts-ignore
-    let jwtToken=localStorage.getItem('token');
+    // let jwtToken=localStorage.getItem('token');
 
-    return this.httpClient.get(this.host + clientid,{headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get(
+      this.host + clientid
+      // ,{headers:new HttpHeaders({'Authorization':jwtToken})}
+    );
   }
 }
