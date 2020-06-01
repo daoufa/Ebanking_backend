@@ -26,8 +26,11 @@ export class RechargeTelephoneService {
     // let jwtToken = localStorage.getItem("token");
 
     return this.httpClient.post(
+
       "http://localhost:8083/rechargeTelephones",
-      data
+
+      "http://localhost:8083/saveRecharge",
+
       // { headers: new HttpHeaders({ Authorization: jwtToken }) }
     );
   }

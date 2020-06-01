@@ -9,6 +9,7 @@ import { ClientService } from "../services/client.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
+  public start:boolean=false;
   public clientid = 1;
   client;
   comptes;
@@ -43,5 +44,9 @@ export class HomeComponent implements OnInit {
         console.log("getComptes Error");
       }
     );
+  }
+
+  ongetStart() {
+    this.start=true;
   }
 }
