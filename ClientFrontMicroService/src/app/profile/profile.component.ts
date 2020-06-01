@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
+import {Client} from "../model/client";
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { ClientService } from '../services/client.service';
 })
 export class ProfileComponent implements OnInit {
 
-  clientId = 1;
+  clientId:number;
   client:any;
   constructor(private clientService : ClientService) { }
 
@@ -17,11 +18,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getClientInfos(){
+    this.clientId=this.client.code;
     this.clientService.getClient(this.clientId).subscribe((data) =>{
       this.client = data;
       console.log(this.client);
     },err =>{
-      console.log("we have a problem");
+      console.log(err);
     }
     );
   }
