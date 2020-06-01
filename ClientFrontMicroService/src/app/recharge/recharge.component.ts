@@ -34,7 +34,7 @@ export class RechargeComponent implements OnInit {
   setListRecharges() {
     for (let id in this.cptIdList) {
       this.rechargeTelephone
-        .getRechargeTelephones(this.cptIdList[id])
+        .getRechargeTelephones(this.cptIdList[id]) 
         .subscribe(
           (data) => {
             let i = 0;

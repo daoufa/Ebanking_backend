@@ -44,6 +44,7 @@ export class ClientService {
 
   public getClient(clientid) {
     // @ts-ignore
+
     // let jwtToken=localStorage.getItem('token');
 
     return this.httpClient.get(

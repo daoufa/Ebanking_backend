@@ -16,12 +16,13 @@ export class ComptesComponent implements OnInit {
   }
 
  async consulterCompte(numCpt){
-   /* await   this.compteService.getCompte(numCpt).subscribe(data => {
+   console.log(numCpt["numero"]);
+    this.compteService.getCompte(numCpt["numero"]).subscribe(data => {
       this.compte = data;
       console.log(data);
     },err =>{
       console.log(err);
-    });*/
+    });
 
   }
 
