@@ -44,8 +44,8 @@ export class ClientService {
 
   public getClient(clientid) {
     // @ts-ignore
-    let jwtToken=localStorage.getItem('token');
+    //let jwtToken=localStorage.getItem('token');
 
-    return this.httpClient.get(this.host + clientid,{headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get(this.host + clientid/*,{headers:new HttpHeaders({'Authorization':jwtToken})}*/);
   }
 }
