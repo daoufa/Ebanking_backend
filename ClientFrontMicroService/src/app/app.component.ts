@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {AfterViewInit, Component, ElementRef} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthenticationService } from "./services/authentication.service";
 import { Router } from "@angular/router";
@@ -8,11 +8,14 @@ import { Router } from "@angular/router";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+
   title = "ClientFrontMicroService";
   login = {};
 
   constructor(
+    private elementRef: ElementRef,
     private http: HttpClient,
     private authService: AuthenticationService,
     private router: Router
@@ -26,5 +29,9 @@ export class AppComponent {
   }
   onSelectedComptes() {
     this.router.navigateByUrl("/home");
+  }
+
+  ngAfterViewInit(){
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#cccccc';
   }
 }
