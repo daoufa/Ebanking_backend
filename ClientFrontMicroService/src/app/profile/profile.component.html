@@ -1,49 +1,48 @@
 <div class="container">
-    <div class="row">
-    <div class="col-sm padding-0" id="img">
-    </div>
+  <div class="row">
+    <div class="col-sm padding-0" id="img"></div>
     <div class="col-sm padding-0" id="inf">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h1>{{ client.nom }} {{ client.prenom }}</h1>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Code</td>
-                            <td>{{client.code}}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>{{client.email}}</td>
-                        </tr>
-                        <tr>
-                            <td>Telephone</td>
-                            <td>{{client.tel}}</td>
-                        </tr>
-                        <tr>
-                            <td>Date de Naissance</td>
-                            <td>{{client.dateNaissance | date: "MM/dd/yyyy"}}</td>
-                        </tr>
-                        <tr>
-                            <td>CIN</td>
-                            <td>{{client.cin}}</td>
-                        </tr>
-                        <tr>
-                            <td>Pays de residence</td>
-                            <td>{{client.paysResidence}}</td>
-                        </tr>
-                        <tr>
-                            <td>Ville</td>
-                            <td>{{client.ville}}</td>
-                        </tr>
-                        <tr>
-                            <td>Profession</td>
-                            <td>{{client.profession}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h1>{{ client.nom }} {{ client.prenom }}</h1>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Code</td>
+                <td>{{ client.code }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ client.email }}</td>
+              </tr>
+              <tr>
+                <td>Telephone</td>
+                <td>{{ client.tel }}</td>
+              </tr>
+              <tr>
+                <td>Date de Naissance</td>
+                <td>{{ client.dateNaissance | date: "MM/dd/yyyy" }}</td>
+              </tr>
+              <tr>
+                <td>CIN</td>
+                <td>{{ client.cin }}</td>
+              </tr>
+              <tr>
+                <td>Pays de residence</td>
+                <td>{{ client.paysResidence }}</td>
+              </tr>
+              <tr>
+                <td>Ville</td>
+                <td>{{ client.ville }}</td>
+              </tr>
+              <tr>
+                <td>Profession</td>
+                <td>{{ client.profession }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
