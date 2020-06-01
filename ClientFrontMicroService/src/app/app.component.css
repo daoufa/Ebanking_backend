@@ -11,12 +11,3 @@
   margin-left: 30px;
   font-size: 17px;
 }
-
-html, body{
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-@font-face{
-  font-family: Josefin Sans;
-  src: url(../assets/fonts/JosefinSans-VariableFont_wght.ttf);
-}
