@@ -25,7 +25,7 @@ export class ComptesService {
   getComptesByOperationId(numOperation: number) {
     return this.httpClient.get("http://localhost:8080/operations/1/compte");
   }
-   getCompte(numCpt) {
-    return this.httpClient.get("http://localhost:8080/comptes/" + numCpt);
+   getCompte(numCpt,clientId) {
+    return this.httpClient.get("http://localhost:8080/clients/"+clientId+"/comptes/" + numCpt);
   }
 }

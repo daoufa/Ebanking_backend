@@ -1,22 +1,23 @@
 <p></p>
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">Consultation d'un compte</div>
+        <div class="panel-heading"><h4>Consultation d'un compte</h4></div>
         <div class="panel-body">
             <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
                 <div class="form-group">
                     <label style="margin:8px">Numero de Compte :</label>
                     <input type="number" name="numero" ngModel style="margin:8px">
-                    <button type="submit" class="btn btn-secondary">
+                    <button type="submit" class="btn btn-secondary" style="margin:8px">
                         <span class="glyphicon glyphicon-search"></span>
                         chercher</button>
+                        <label style="color: red;">{{message}}</label>
                 </div>
             </form>
         </div> 
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Information sur le compte</div>
+        <div class="panel-heading"><h4>Information sur le compte</h4></div>
         <div class="panel-body" *ngIf="compte">
             <div>
                 <label>Client :</label>
@@ -28,7 +29,7 @@
             </div>
             <div>
                 <label>Date de creation: </label>
-                <label class="lb">{{compte.dateCreation}}</label>
+                <label class="lb">{{compte.dateCreation | date: "MM/dd/yyyy à h:mma"}}</label>
             </div>
             <div>
                 <label>Solde: </label>
