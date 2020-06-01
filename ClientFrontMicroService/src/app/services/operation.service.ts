@@ -22,19 +22,19 @@ export class OperationService {
     return this.httpClient.get(this.host);
   }
 
- /* public getVirementById(id: number ) {
+  /*public getVirementById(id: number ) {
     return this.httpClient.get('http://localhost:8083/virements/'+id);
-  }
+  }*/
 
-  public getOperationByCompteId(cpteid: number ) {
+  /*public getOperationByCompteId(cpteid: number ) {
 
     let jwtToken=localStorage.getItem('token');
     return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut');
-  }
+  }*/
 
-  public getVirementsByCompteId(cpteid: number ) {
+ /* public getVirementsByCompteId(cpteid: number ) {
     let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});
+    return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});*/
 
   public getVirementById(id: number) {
     return this.httpClient.get("http://localhost:8083/virements/" + id);
@@ -75,5 +75,5 @@ export class OperationService {
     //@ts-ignore
     return this.httpClient.put(this.host, data);
   }
-}*/
 }
+
