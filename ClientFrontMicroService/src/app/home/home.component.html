@@ -1,5 +1,4 @@
 
-
 <section id="home">
   <div class="container">
     <div class="row">
@@ -9,6 +8,7 @@
           <div class="sub-element">Avec cette application</div>
           <div class="sub-element">vous pouvez consulter votre comptes, effectuer des virements et des recharges telephonique </div>
           <div class="sub-element">tout en ligne</div>
+
         </div>
         <a data-scroll  class="btn btn-default wow fadeInUp" data-wow-offset="50" (click)="onstart()" data-wow-delay="0.6s">GET STARTED</a>
       </div>
@@ -16,7 +16,6 @@
   </div>
 </section>
 <!-- end home -->
-
 
   <div class="container" *ngIf="start">
 
@@ -97,7 +96,7 @@
                         </tr>
 
                           <td>
-                            <button class="btn btn-primary" routerLink="/comptes">voir plus </button>
+                            <button class="btn btn-primary" (click)="goToMoreInfos(c1.numCompte)">voir plus </button>
                           </td>
 
                         </tbody>
@@ -109,6 +108,8 @@
             </div>
           </div>
 </div>
+
+
 </div>
 
   </div>

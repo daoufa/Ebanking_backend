@@ -33,4 +33,7 @@ export class ComptesService {
     return this.httpClient.get("http://localhost:8083/clients/"+clientId+"/comptes/" + numCpt);
 
   }
+  getCurrentAccount(numCpt) {
+    return this.httpClient.get(this.host + numCpt);
+  }
 }

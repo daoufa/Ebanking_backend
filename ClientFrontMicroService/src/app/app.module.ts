@@ -19,6 +19,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogComponent } from "./dialog/dialog.component";
+import { DemandeComponent } from './demande/demande.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DialogComponent } from "./dialog/dialog.component";
     ProfileComponent,
     RechargeComponent,
     DialogComponent,
+    DemandeComponent,
   ],
   imports: [
     BrowserModule,

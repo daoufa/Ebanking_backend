@@ -11,6 +11,7 @@ import { ClientService } from "../services/client.service";
 export class HomeComponent implements OnInit {
   public start:boolean=false;
   public clientid = 1;
+
   client;
   comptes;
   constructor(
@@ -47,7 +48,12 @@ export class HomeComponent implements OnInit {
   }
 
 
+
   onstart() {
-    this.start=true;
+    this.start = true;
+  }
+  goToMoreInfos(c){
+    this.router.navigate(['/comptes'],{state : {data: {c}}});
+
   }
 }
