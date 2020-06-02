@@ -86,12 +86,12 @@
               <tr>
                 <th scope="row"></th>
                 <td>
-                  <a routerLink="/comptes"
+                  <a (click)="goToMoreInfos(c.numCompte)"
                     >voir plus <i class="fas fa-arrow-alt-circle-right"></i
                   ></a>
                 </td>
               </tr>
-            </tbody>
+            </tbody> 
           </table>
         </div>
       </div>
@@ -147,7 +147,7 @@
               <tr>
                 <th scope="row"></th>
                 <td>
-                  <a routerLink="/comptes"
+                  <a (click)="goToMoreInfos(c1.numCompte)"
                     >voir plus <i class="fas fa-arrow-alt-circle-right"></i
                   ></a>
                 </td>

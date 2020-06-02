@@ -6,5 +6,12 @@ body {
   min-height: 100vh;
   position: relative;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  height: 100%; background-image: url(assets/images/mony.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body { 
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+

@@ -28,4 +28,7 @@ export class ComptesService {
    getCompte(numCpt,clientId) {
     return this.httpClient.get("http://localhost:8080/clients/"+clientId+"/comptes/" + numCpt);
   }
+  getCurrentAccount(numCpt) {
+    return this.httpClient.get(this.host + numCpt);
+  }
 }

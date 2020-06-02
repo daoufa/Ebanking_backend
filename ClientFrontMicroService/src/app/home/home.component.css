@@ -7,7 +7,7 @@
 }
 
 #compteContainer {
-  margin-top: 100px;
+  margin-top: 40px;
 }
 /*
 #nomprenom {
@@ -17,4 +17,13 @@
 
 #introPara {
   color: aliceblue;
+}
+
+@font-face{
+  font-family: Josefin Sans;
+  src: url(../../assets/fonts/JosefinSans-VariableFont_wght.ttf);
+}
+
+.container{
+    font-family: 'Josefin Sans', sans-serif;
 }
