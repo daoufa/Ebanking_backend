@@ -17,6 +17,9 @@ select.form-control { min-height: 35px; /** OR */ line-height: 35px; }
 
 }
 
+.table-hover{
+  color:black;
+}
 
 .lb{
   font-weight: bold;

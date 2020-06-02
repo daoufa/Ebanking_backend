@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   getClientInfos(){
     this.clientId=this.client.code;
-    this.clientService.getClient(this.clientId).subscribe((data) =>{
+    this.clientService.getClient(/*this.clientId*/1).subscribe((data) =>{
       this.client = data;
       console.log(this.client);
     },err =>{

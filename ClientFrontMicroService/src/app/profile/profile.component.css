@@ -46,9 +46,11 @@
 }
 
 .table{
+  color:black;
     border:black;
   }
 .table > tbody > tr > td{
+  color:black;
     border:black;
     margin-bottom: 5px;
     font-size: 18px;

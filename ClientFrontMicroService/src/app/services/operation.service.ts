@@ -10,7 +10,7 @@ import { ComptesService } from "./comptes.service";
 })
 export class OperationService {
 
-  public host = 'http://localhost:8083/operations';
+  public host = 'http://localhost:8080/operations';
 
   // @ts-ignore
   constructor(
@@ -37,7 +37,7 @@ export class OperationService {
     return this.httpClient.get('http://localhost:8083/comptes/' + cpteid + '/virementsOut',{headers:new HttpHeaders({'Authorization':jwtToken})});*/
 
   public getVirementById(id: number) {
-    return this.httpClient.get("http://localhost:8083/virements/" + id);
+    return this.httpClient.get("http://localhost:8080/virements/" + id);
   }
 
   public getOperationByCompteId(cpteid: number) {
@@ -50,7 +50,7 @@ export class OperationService {
   public getVirementsByCompteId(cpteid: number) {
     // let jwtToken=localStorage.getItem('token');
     return this.httpClient.get(
-      "http://localhost:80803/comptes/" + cpteid + "/virementsOut"
+      "http://localhost:8080/comptes/" + cpteid + "/virementsOut"
       // ,{headers:new HttpHeaders({'Authorization':jwtToken})}
     );
 
@@ -62,7 +62,7 @@ export class OperationService {
   public save(data): Observable<Virement> {
     // @ts-ignore
 
-    return this.httpClient.post('http://localhost:8083/saveVirements', data);
+    return this.httpClient.post('http://localhost:8080/saveVirements', data);
 
   }
 

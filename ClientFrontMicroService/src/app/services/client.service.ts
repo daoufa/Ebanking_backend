@@ -7,16 +7,16 @@ import { Client } from "../model/client";
   providedIn: "root",
 })
 export class ClientService {
-  public host: string = "http://localhost:8083/clients/";
+  public host: string = "http://localhost:8080/clients/";
   // @ts-ignore
   constructor(private httpClient: HttpClient) {}
 
   public getClients(page: number, size: number) {
-    let jwtToken = localStorage.getItem("token");
+   // let jwtToken = localStorage.getItem("token");
 
-    return this.httpClient.get(this.host, {
+    return this.httpClient.get(this.host/*, {
       headers: new HttpHeaders({ Authorization: jwtToken }),
-    });
+    }*/);
   }
   /* public getProductsByKeyword(mc:string,page:number,size:number ){
 

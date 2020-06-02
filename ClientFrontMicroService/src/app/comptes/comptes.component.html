@@ -10,38 +10,35 @@
 
           <input name="numero" type="number" ngModel class="form-control" id="fullname">
           <p><input type="submit" class="form-control"></p>
-          <label class="styleE" style="color: red;">{{message}}</label>
+          <label class="lb" style="color: red;">{{message}}</label>
         </form>
         <div class="panel panel-info">
           <div class="panel-heading"style="color:#31708f;"><h4>Information sur le compte</h4></div>
           <div class="panel-body" *ngIf="compte">
-            <div>
-              <label class="styleE">Client :</label>
-              <label class="lb" >{{compte.clientNom}}</label>
-            </div>
+
             <div>
               <label class="styleE">Numero du Compte: </label>
-              <label class="styleE lb">{{compte.numCompte}}</label>
+              <label class=" lb">{{compte.numCompte}}</label>
             </div>
             <div>
               <label class="styleE">Date de creation: </label>
-              <label class="styleE lb">{{compte.dateCreation | date: "MM/dd/yyyy à h:mma"}}</label>
+              <label class=" lb">{{compte.dateCreation | date: "MM/dd/yyyy à h:mma"}}</label>
             </div>
             <div>
               <label class="styleE">Solde: </label>
-              <label class="styleE lb">{{compte.solde}}</label>
+              <label class=" lb">{{compte.solde}} DH</label>
             </div>
-            <div *ngIf="compte.decouvert">
+            <div *ngIf="!compte.epargne">
               <label class="styleE">Type: </label>
-              <label class="styleE lb">Courant</label><br>
+              <label class=" lb">Courant</label><br>
               <label class="styleE">Decouvert: </label>
-              <label class="styleE lb">{{compte.decouvert}}</label>
+              <label class=" lb">{{compte.decouvert}}%</label>
             </div>
-            <div *ngIf="compte.tauxInterets">
+            <div *ngIf="compte.epargne">
               <label class="styleE">Type: </label>
-              <label class="styleE lb">Epargne</label><br>
+              <label class=" lb">Epargne</label><br>
               <label class="styleE">Taux: </label>
-              <label class="styleE lb">{{compte.tauxInterets}}</label>
+              <label class="s lb">{{compte.tauxInterets}}%</label>
             </div>
           </div>
         </div>
