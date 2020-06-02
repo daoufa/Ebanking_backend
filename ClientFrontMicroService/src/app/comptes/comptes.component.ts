@@ -35,7 +35,7 @@ export class ComptesComponent implements OnInit {
   }
 
   async currentAccount(){
-     this.compteService.getCurrentAccount(this.currentNum["c"]).subscribe(data => {
+     if(this.currentNum !=null) this.compteService.getCurrentAccount(this.currentNum["c"]).subscribe(data => {
        this.compte = data;
        console.log(data);
      },err =>{

@@ -27,3 +27,7 @@
 .container{
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.clickable{
+  cursor:pointer;
+}
