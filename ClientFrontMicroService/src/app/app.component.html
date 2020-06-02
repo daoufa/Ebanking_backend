@@ -1,4 +1,17 @@
 <body id="top">
+
+<!-- start preloader -->
+<div class="preloader">
+  <div class="sk-spinner sk-spinner-wave">
+    <div class="sk-rect1"></div>
+    <div class="sk-rect2"></div>
+    <div class="sk-rect3"></div>
+    <div class="sk-rect4"></div>
+    <div class="sk-rect5"></div>
+  </div>
+</div>
+<!-- end preloader -->
+<!-- start navigation -->
 <nav class="navbar navbar-default templatemo-nav" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -7,65 +20,27 @@
         <span class="icon icon-bar"></span>
         <span class="icon icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand"><img src="/assets/images/ebanking.png" alt=""></a>
+      <a href="#" class="navbar-brand"><img src="assets/images/ebanking.png" class="navbar-brand" alt="team img 1"></a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#top">Accueil</a></li>
-        <li><a  routerLink="/virement">Virements</a></li>
-        <li><a   routerLink="/recharge">Recharges</a></li>
-        <li><a   routerLink="/comptes">Comptes</a></li>
-        <li><a  routerLink="/profiles">Profile</a></li>
+      <ul class="nav navbar-nav navbar-right text-uppercase">
+
+        <li><a href="#top"><span>Accueil</span></a></li>
+        <li><a routerLink="/virement"><span>Virements</span></a></li>
+        <li><a routerLink="/recharge"><span>Recharges</span></a></li>
+        <li><a routerLink="/comptes"><span>Comptes</span></a></li>
+        <li><a routerLink="/profiles"><span>Profile</span></a></li>
+        <li><a href="/"><span>Qui somme Nous</span></a></li>
       </ul>
     </div>
   </div>
 </nav>
 <!-- end navigation -->
 
+  <router-outlet>
 
+  </router-outlet>
 
-
-
-<!-- Navigation -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="/assets/images/ebanking.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/home">Home
-
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/virement">Virements</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="/recharge">Recharges</a>
-        </li>
-        <li class="dropdown" class="nav-item">
-          <a class="nav-link"  routerLink="/comptes">Comptes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link aHover" routerLink="/profiles">Profile</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
--->
-
-
-
-
-
-
-<router-outlet> </router-outlet>
 <!-- start contact -->
 <section id="contact">
   <div class="container">
@@ -119,3 +94,5 @@
   </div>
 </footer>
 <!-- end copyright -->
+
+</body>

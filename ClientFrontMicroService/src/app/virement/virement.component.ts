@@ -59,7 +59,7 @@ export class VirementComponent implements OnInit {
   }
 
   getComptes() {
-    this.compteService.getComptesByClientId(2).subscribe(
+    this.compteService.getComptesByClientId(1).subscribe(
       (data) => {
         this.comptes = data;
         console.log(this.comptes);

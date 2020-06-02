@@ -14,7 +14,7 @@
 }
 
 .t{
-    font-size: 30;
+    font-size: 30px;
     font-weight: bold;
     border-color: white;
 }
@@ -29,7 +29,7 @@
 
 #inf{
     margin-top: 14px;
-    
+
 }
 
 .row{
@@ -42,7 +42,7 @@
 
 @font-face{
     font-family: Josefin Sans;
-    src: url(../../assets/fonts/JosefinSans-VariableFont_wght.ttf);
+    src: url(../../assets/images/client.jpg);
 }
 
 .table{

@@ -1,51 +1,62 @@
-<p></p>
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Consultation d'un compte</div>
-        <div class="panel-body">
-            <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
-                <div class="form-group">
-                    <label style="margin:8px">Numero de Compte :</label>
-                    <input type="number" name="numero" ngModel style="margin:8px">
-                    <button type="submit" class="btn btn-secondary">
-                        <span class="glyphicon glyphicon-search"></span>
-                        chercher</button>
-                </div>
-            </form>
-        </div> 
-    </div>
+ <section style="background: url('../../assets/images/img_3.jpg') no-repeat; background-size:cover;" id="contact">
+  <div class="container center-block">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">Consultation <span> d'un compte</span></h2>
+      </div>
+      <div class="col-md-9 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-offset="50" data-wow-delay="0.9s">
+         <form #f="ngForm" (ngSubmit)="consulterCompte(f.value)">
+          <label class="styleE">Numero de Compte</label>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Information sur le compte</div>
-        <div class="panel-body" *ngIf="compte">
+          <input name="numero" type="number" ngModel class="form-control" id="fullname">
+          <p><input type="submit" class="form-control"></p>
+          <label class="styleE" style="color: red;">{{message}}</label>
+        </form>
+        <div class="panel panel-info">
+          <div class="panel-heading"style="color:#31708f;"><h4>Information sur le compte</h4></div>
+          <div class="panel-body" *ngIf="compte">
             <div>
-                <label>Client :</label>
-                <label class="lb" >{{compte.clientNom}}</label>
+              <label class="styleE">Client :</label>
+              <label class="lb" >{{compte.clientNom}}</label>
             </div>
             <div>
-                <label>Numero du Compte: </label>
-                <label class="lb">{{compte.numCompte}}</label>
+              <label class="styleE">Numero du Compte: </label>
+              <label class="styleE lb">{{compte.numCompte}}</label>
             </div>
             <div>
-                <label>Date de creation: </label>
-                <label class="lb">{{compte.dateCreation}}</label>
+              <label class="styleE">Date de creation: </label>
+              <label class="styleE lb">{{compte.dateCreation | date: "MM/dd/yyyy à h:mma"}}</label>
             </div>
             <div>
-                <label>Solde: </label>
-                <label class="lb">{{compte.solde}}</label>
+              <label class="styleE">Solde: </label>
+              <label class="styleE lb">{{compte.solde}}</label>
             </div>
             <div *ngIf="compte.decouvert">
-                <label>Type: </label>
-                <label class="lb">Courant</label><br>
-                <label>Decouvert: </label>
-                <label class="lb">{{compte.decouvert}}</label>
+              <label class="styleE">Type: </label>
+              <label class="styleE lb">Courant</label><br>
+              <label class="styleE">Decouvert: </label>
+              <label class="styleE lb">{{compte.decouvert}}</label>
             </div>
             <div *ngIf="compte.tauxInterets">
-                <label>Type: </label>
-                <label class="lb">Epargne</label><br>
-                <label>Taux: </label>
-                <label class="lb">{{compte.tauxInterets}}</label>
+              <label class="styleE">Type: </label>
+              <label class="styleE lb">Epargne</label><br>
+              <label class="styleE">Taux: </label>
+              <label class="styleE lb">{{compte.tauxInterets}}</label>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+ <footer id="copyright">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12 text-center">
+         <p class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">
+            </p>
+       </div>
+     </div>
+   </div>
+ </footer>
+

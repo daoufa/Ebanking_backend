@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  ongetStart() {
+
+  onstart() {
     this.start=true;
   }
 }
