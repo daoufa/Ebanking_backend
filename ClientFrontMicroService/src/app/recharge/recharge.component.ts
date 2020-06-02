@@ -5,6 +5,12 @@ import { ComptesService } from "../services/comptes.service";
 
 //import { Compte } from "../model/compte.model";
 import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import {
+  DialogComponent,
+  ConfirmDialogModel,
+} from "../dialog/dialog.component";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-recharge",
@@ -12,6 +18,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./recharge.component.css"],
 })
 export class RechargeComponent implements OnInit {
+  modelResult: string = "";
   listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
   recharge = new Recharge("", null, new Date(), "", null);
@@ -21,7 +28,8 @@ export class RechargeComponent implements OnInit {
   constructor(
     private rechargeTelephone: RechargeTelephoneService,
     private comptesService: ComptesService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -31,10 +39,26 @@ export class RechargeComponent implements OnInit {
     };
   }
 
+  async openDialog() {
+    const message = `vous etes sur d'effectuer se recharge`;
+
+    const dialogData = new ConfirmDialogModel("confirmation", message);
+
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: dialogData,
+    });
+
+    await dialogRef.afterClosed().subscribe((dialogResult) => {
+      console.log(dialogResult);
+      this.modelResult = dialogResult;
+    });
+    console.log(this.modelResult);
+  }
+
   setListRecharges() {
     for (let id in this.cptIdList) {
       this.rechargeTelephone
-        .getRechargeTelephones(this.cptIdList[id]) 
+        .getRechargeTelephones(this.cptIdList[id])
         .subscribe(
           (data) => {
             let i = 0;
@@ -63,15 +87,19 @@ export class RechargeComponent implements OnInit {
   }
 
   onSaveRecharge() {
-    this.recharge.setCompteObject();
-    this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
-      (res) => {
-        this.router.navigateByUrl("/recharge");
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.openDialog();
+    console.log(this.modelResult);
+    if (this.modelResult == "true") {
+      this.recharge.setCompteObject();
+      this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
+        (res) => {
+          this.router.navigateByUrl("/recharge");
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   getComptes() {
