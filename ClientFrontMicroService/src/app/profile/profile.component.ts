@@ -9,18 +9,17 @@ import {Client} from "../model/client";
 })
 export class ProfileComponent implements OnInit {
 
-  clientId:number;
-  client:any;
+  clientId:number = 1;
+  client:Client;
   constructor(private clientService : ClientService) { }
 
   ngOnInit(): void {
     this.getClientInfos();
   }
 
-  getClientInfos(){
-    this.clientId=this.client.code;
-    this.clientService.getClient(/*this.clientId*/1).subscribe((data) =>{
-      this.client = data;
+  getClientInfos(){ 
+    this.clientService.getClient(this.clientId).subscribe((data) =>{
+      this.client = new Client().deserialize(data);
       console.log(this.client);
     },err =>{
       console.log(err);

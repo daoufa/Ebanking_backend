@@ -1,48 +1,53 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm padding-0" id="img"></div>
-    <div class="col-sm padding-0" id="inf">
+    <div class="col-sm-6 padding-0" id="img"></div>
+    <div class="col-sm-6 padding-0" id="inf">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h1>{{ client.nom }} {{ client.prenom }}</h1>
           <table class="table">
+            <h1>{{ client.nom }} {{ client.prenom }}</h1>
             <tbody>
               <tr>
-                <td>Code</td>
+                <th scope="row">Code</th>
                 <td>{{ client.code }}</td>
               </tr>
+
               <tr>
-                <td>Email</td>
+                <th scope="row">Email</th>
                 <td>{{ client.email }}</td>
               </tr>
+
               <tr>
-                <td>Telephone</td>
+                <th scope="row">Telephone</th>
                 <td>{{ client.tel }}</td>
               </tr>
+
               <tr>
-                <td>Date de Naissance</td>
+                <th scope="row">Date de Naissance</th>
                 <td>{{ client.dateNaissance | date: "MM/dd/yyyy" }}</td>
               </tr>
+
               <tr>
-                <td>CIN</td>
+                <th scope="row">CIN</th>
                 <td>{{ client.cin }}</td>
               </tr>
+
               <tr>
-                <td>Pays de residence</td>
+                <th scope="row">Pays de residence</th>
                 <td>{{ client.paysResidence }}</td>
               </tr>
+
               <tr>
-                <td>Ville</td>
+                <th scope="row">Ville</th>
                 <td>{{ client.ville }}</td>
               </tr>
+
               <tr>
-                <td>Profession</td>
+                <th scope="row">Profession</th>
                 <td>{{ client.profession }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-    </div>
   </div>
 </div>

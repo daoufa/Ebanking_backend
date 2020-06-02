@@ -27,7 +27,7 @@ export class ComptesService {
   }
 
   /* getCompte(numCpt) {
-    return this.httpClient.get("http://localhost:8083/comptes/" + numCpt);*/
+    return this.httpClient.get("http://localhost:8080/comptes/" + numCpt);*/
 
    getCompte(numCpt,clientId) {
     return this.httpClient.get("http://localhost:8080/clients/"+clientId+"/comptes/" + numCpt);
