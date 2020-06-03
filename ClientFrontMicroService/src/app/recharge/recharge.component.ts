@@ -18,12 +18,14 @@ import { map } from "rxjs/operators";
   styleUrls: ["./recharge.component.css"],
 })
 export class RechargeComponent implements OnInit {
-  modelResult: string = "";
+  modelResult: boolean=false;
   listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
   recharge = new Recharge("", null, new Date(), "", null);
   clientid = 1;
   cptIdList = [];
+  mode = 1;
+  modeName = "Historique";
 
   constructor(
     private rechargeTelephone: RechargeTelephoneService,
@@ -39,7 +41,7 @@ export class RechargeComponent implements OnInit {
     };
   }
 
-  async openDialog() {
+  async openDialog(data) {
     const message = `vous etes sur d'effectuer se recharge`;
 
     const dialogData = new ConfirmDialogModel("confirmation", message);
@@ -49,10 +51,9 @@ export class RechargeComponent implements OnInit {
     });
 
     await dialogRef.afterClosed().subscribe((dialogResult) => {
-      console.log(dialogResult);
       this.modelResult = dialogResult;
+      this.onSaveRecharge(data);
     });
-    console.log(this.modelResult);
   }
 
   setListRecharges() {
@@ -86,12 +87,16 @@ export class RechargeComponent implements OnInit {
     this.listRecharges.shift();
   }
 
-  onSaveRecharge() {
-    this.openDialog();
-    console.log(this.modelResult);
-    if (this.modelResult == "true") {
-      this.recharge.setCompteObject();
-      this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
+  onSaveRecharge(data) {
+
+    if (this.modelResult == true) {
+      let res = JSON.stringify(this.recharge);
+      let obj = JSON.parse(res);
+
+      obj.compte = { numCompte: data.compteid, type: "cc" };
+      this.recharge.setCompte();
+      console.log(this.recharge);
+      this.rechargeTelephone.SaveRecharge(JSON.parse(JSON.stringify(this.recharge))).subscribe(
         (res) => {
           this.router.navigateByUrl("/recharge");
         },
@@ -131,5 +136,15 @@ export class RechargeComponent implements OnInit {
     }
     console.log("comptes ids : " + this.cptIdList);
     this.setListRecharges();
+  }
+
+  changeMode() {
+    if (this.mode == 1) {
+      this.mode = 2;
+      this.modeName = "Nouveau virement";
+    } else {
+      this.mode = 1;
+      this.modeName = "Historique";
+    }
   }
 }

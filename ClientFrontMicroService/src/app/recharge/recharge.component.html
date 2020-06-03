@@ -1,12 +1,169 @@
-<link
+<!-- <link
   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   rel="stylesheet"
 />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<div
+  style="
+    background: url('../../assets/images/home-bg.jpg') no-repeat;
+    background-size: cover;
+  "
+>
+  <div class="row">
+    <div class="col-sm col-lg-7 centre">
+      <div class="panel panel-success" id="outDiv">
+        <div class="panel-heading styleE lb">
+          Nouveau Recharge
+          <button
+            id="modeButton"
+            class="btn btn-info styleE lb"
+            type="submit"
+            (click)="this.changeMode()"
+          >
+            {{ this.modeName }}
+          </button>
+        </div>
 
+        <div class="panel-body" *ngIf="this.mode == 1">
+          <div class="panel panel-default" id="inDiv">
+            <div class="panel-body">
+              <form #f="ngForm" (ngSubmit)="openDialog(f.value)">
+                <div class="form-group">
+                  <label class="control-label styleE lb"
+                    >numero telephone</label
+                  >
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="numTel"
+                    placeholder="numero telephone"
+                    [(ngModel)]="recharge.numTel"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="control-label styleE lb">montant</label>
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="montant"
+                    placeholder="montant"
+                    [(ngModel)]="recharge.montant"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="control-label styleE lb"
+                    >numero de compte</label
+                  >
+
+                  <div>
+                    <select
+                      class="form-control"
+                      id="exampleFormControlSelect1"
+
+                      *ngIf="comptes"
+                      name="compteid"
+                      [(ngModel)]="recharge.compteid"
+                    >
+                      <option type="number"
+                        *ngFor="
+                          let c of comptes._embedded.compteCourants;
+                          index as i
+                        "
+                        >{{ c.numCompte }}</option
+                      >
+                      <option type="number"
+                        *ngFor="
+                          let c1 of comptes._embedded.compteEpargnes;
+                          index as i1
+                        "
+                        >{{ c1.numCompte }}</option
+                      >
+                    </select>
+                  </div>
+                  <input type="hidden" name="date" />
+                </div>
+
+                <button class="btn btn-success styleE lb" type="submit">
+                  Enregistrer <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body" style="height: 500px;" *ngIf="this.mode == 2">
+          <div class="panel panel-default" *ngIf="comptes">
+            <div
+              class="panel-body"
+              *ngFor="
+                let c of comptes._embedded.compteCourants;
+                index as i;
+                first as f
+              "
+            >
+              <h4 style="color: cornflowerblue; font-weight: bold;">
+                compte numero : {{ c.numCompte }}
+              </h4>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">montant</th>
+                    <th scope="col">date</th>
+                    <th scope="col">Tél</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let r of listRecharges">
+                    <tr *ngIf="r.compteid == c.numCompte" id="line">
+                      <td>{{ r.montant + " DH" }}</td>
+                      <td>{{ r.date | date: "MM/dd/yyyy 'à' h:mma" }}</td>
+                      <td>{{ r.numTel }}</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <!-- compte Epargne -->
+            <div
+              class="panel-body"
+              *ngFor="
+                let c of comptes._embedded.compteEpargnes;
+                index as i;
+                first as f
+              "
+            >
+              <h4 style="color: rgb(252, 86, 57); font-weight: bold;">
+                compte numero : {{ c.numCompte }}
+              </h4>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">montant</th>
+                    <th scope="col">date</th>
+                    <th scope="col">Tél</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let r of listRecharges">
+                    <tr *ngIf="r.compteid == c.numCompte" id="line">
+                      <td>{{ r.montant + " DH" }}</td>
+                      <td>{{ r.date | date: "MM/dd/yyyy 'à' h:mma" }}</td>
+                      <td>{{ r.numTel }}</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
 <div class="container">
-  <!-- card save Recharge -->
   <div class="d-flex justify-content-center" style="margin-top: 50px;">
     <div class="card border-primary mb-5">
       <div class="card-body">
@@ -60,7 +217,6 @@
     </div>
   </div>
 
-  <!-- colapse comptecourant-->
   <div class="container" id="compteContainer" *ngIf="comptes">
     <div id="accordion">
       <div
@@ -100,8 +256,8 @@
         <div
           id="collapse{{ i }}"
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
-        >
-          <!-- cards -->
+        ></div>
+
           <div *ngFor="let r of listRecharges" style="display: inline-block;">
             <div *ngIf="r.compteid == c.numCompte">
               <div class="card text-white m-4 RechargeInfoInHistorique">
@@ -116,14 +272,14 @@
                 </div>
               </div>
             </div>
-            <!-- end cards -->
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- colapse CompteEpargne-->
+
   <div class="container mt-5" id="compteContainer2" *ngIf="comptes">
     <div id="accordion2">
       <div
@@ -164,7 +320,7 @@
           id="collapse2{{ i }}"
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
         >
-          <!-- cards -->
+
           <div *ngFor="let r of listRecharges" style="display: inline-block;">
             <div *ngIf="r.compteid == c.numCompte">
               <div class="card text-white m-4 RechargeInfoInHistorique">
@@ -179,10 +335,10 @@
                 </div>
               </div>
             </div>
-            <!-- end cards -->
+
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
