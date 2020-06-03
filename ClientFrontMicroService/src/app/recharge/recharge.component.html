@@ -28,7 +28,7 @@
         <div class="panel-body" *ngIf="this.mode == 1">
           <div class="panel panel-default" id="inDiv">
             <div class="panel-body">
-              <form #f="ngForm" (ngSubmit)="openDialog()">
+              <form #f="ngForm" (ngSubmit)="openDialog(f.value)">
                 <div class="form-group">
                   <label class="control-label styleE lb"
                     >numero telephone</label
@@ -45,7 +45,7 @@
                   <label class="control-label styleE lb">montant</label>
                   <input
                     class="form-control"
-                    type="text"
+                    type="number"
                     name="montant"
                     placeholder="montant"
                     [(ngModel)]="recharge.montant"
@@ -60,18 +60,19 @@
                     <select
                       class="form-control"
                       id="exampleFormControlSelect1"
+
                       *ngIf="comptes"
                       name="compteid"
                       [(ngModel)]="recharge.compteid"
                     >
-                      <option
+                      <option type="number"
                         *ngFor="
                           let c of comptes._embedded.compteCourants;
                           index as i
                         "
                         >{{ c.numCompte }}</option
                       >
-                      <option
+                      <option type="number"
                         *ngFor="
                           let c1 of comptes._embedded.compteEpargnes;
                           index as i1
@@ -161,7 +162,7 @@
   </div>
 </div>
 
-<!-- 
+<!--
 <div class="container">
   <div class="d-flex justify-content-center" style="margin-top: 50px;">
     <div class="card border-primary mb-5">
@@ -256,7 +257,7 @@
           id="collapse{{ i }}"
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
         ></div>
-          
+
           <div *ngFor="let r of listRecharges" style="display: inline-block;">
             <div *ngIf="r.compteid == c.numCompte">
               <div class="card text-white m-4 RechargeInfoInHistorique">
@@ -271,14 +272,14 @@
                 </div>
               </div>
             </div>
-           
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
- 
+
   <div class="container mt-5" id="compteContainer2" *ngIf="comptes">
     <div id="accordion2">
       <div
@@ -319,7 +320,7 @@
           id="collapse2{{ i }}"
           [ngClass]="{ 'collapse show': i === 0, collapse: i != 0 }"
         >
-         
+
           <div *ngFor="let r of listRecharges" style="display: inline-block;">
             <div *ngIf="r.compteid == c.numCompte">
               <div class="card text-white m-4 RechargeInfoInHistorique">
@@ -334,7 +335,7 @@
                 </div>
               </div>
             </div>
-           
+
           </div>
         </div>
       </div>

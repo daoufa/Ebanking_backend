@@ -12,8 +12,11 @@ export class Recharge {
   }
 
 
-  setUrl() {
-    this.compte = "http://localhost:8083/compteCourant/" + this.compteid;
+  setCompte() {
+
+    var y: number = +this.compteid;
+    this.compteid=y;
+    this.compte = {"numCompte":this.compteid,"type":"cc"}
 
     /* setCompteObject() {
        this.compte = {"numCompte":this.compteid,"type":"cc"};
@@ -21,7 +24,5 @@ export class Recharge {
      }*/
   }
 
-  setCompteObject() {
 
-  }
 }

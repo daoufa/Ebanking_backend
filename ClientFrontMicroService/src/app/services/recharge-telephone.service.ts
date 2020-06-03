@@ -29,9 +29,9 @@ export class RechargeTelephoneService {
 
     return this.httpClient.post(
 
-      "http://localhost:8080/rechargeTelephones",
 
-      "http://localhost:8080/saveRecharge",
+
+      "http://localhost:8080/saveRecharge",data
 
       // { headers: new HttpHeaders({ Authorization: jwtToken }) }
     );
