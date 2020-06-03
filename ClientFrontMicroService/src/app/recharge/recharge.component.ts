@@ -24,6 +24,8 @@ export class RechargeComponent implements OnInit {
   recharge = new Recharge("", null, new Date(), "", null);
   clientid = 1;
   cptIdList = [];
+  mode = 1;
+  modeName = "Historique";
 
   constructor(
     private rechargeTelephone: RechargeTelephoneService,
@@ -49,10 +51,9 @@ export class RechargeComponent implements OnInit {
     });
 
     await dialogRef.afterClosed().subscribe((dialogResult) => {
-      console.log(dialogResult);
       this.modelResult = dialogResult;
+      this.onSaveRecharge();
     });
-    console.log(this.modelResult);
   }
 
   setListRecharges() {
@@ -87,8 +88,6 @@ export class RechargeComponent implements OnInit {
   }
 
   onSaveRecharge() {
-    this.openDialog();
-    console.log(this.modelResult);
     if (this.modelResult == "true") {
       this.recharge.setCompteObject();
       this.rechargeTelephone.SaveRecharge(this.recharge).subscribe(
@@ -131,5 +130,15 @@ export class RechargeComponent implements OnInit {
     }
     console.log("comptes ids : " + this.cptIdList);
     this.setListRecharges();
+  }
+
+  changeMode() {
+    if (this.mode == 1) {
+      this.mode = 2;
+      this.modeName = "Nouveau virement";
+    } else {
+      this.mode = 1;
+      this.modeName = "Historique";
+    }
   }
 }
