@@ -25,6 +25,7 @@
 
 .container{
     font-family: 'Josefin Sans', sans-serif;
+    color: #40424a;
 }
 
 @font-face{
@@ -50,6 +51,8 @@
 
 .h1{
     margin-bottom: 30px;
+    line-height: normal;
+    font-weight: bold;
 }
 
 .panel-default{
