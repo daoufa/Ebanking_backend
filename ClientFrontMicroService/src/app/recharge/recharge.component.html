@@ -24,6 +24,22 @@
             {{ this.modeName }}
           </button>
         </div>
+        <div class="dropdown" *ngIf="this.mode == 2">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            comptes
+
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+          </ul>
+        </div>
 
         <div class="panel-body" *ngIf="this.mode == 1">
           <div class="panel panel-default" id="inDiv">
@@ -60,19 +76,20 @@
                     <select
                       class="form-control"
                       id="exampleFormControlSelect1"
-
                       *ngIf="comptes"
                       name="compteid"
                       [(ngModel)]="recharge.compteid"
                     >
-                      <option type="number"
+                      <option
+                        type="number"
                         *ngFor="
                           let c of comptes._embedded.compteCourants;
                           index as i
                         "
                         >{{ c.numCompte }}</option
                       >
-                      <option type="number"
+                      <option
+                        type="number"
                         *ngFor="
                           let c1 of comptes._embedded.compteEpargnes;
                           index as i1
