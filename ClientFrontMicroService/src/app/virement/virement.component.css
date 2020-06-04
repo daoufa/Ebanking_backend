@@ -1,7 +1,3 @@
-div{
-  overflow-y: auto;
-}
-
 label{
   margin-right: 10px;
 }
@@ -9,8 +5,8 @@ label{
 select.form-control { min-height: 35px; /** OR */ line-height: 35px; }
 
 #modeButton{
- float: right;
-
+  margin-top: 0;
+  float: right;
 }
 
 .table-hover{
@@ -37,6 +33,8 @@ select.form-control { min-height: 35px; /** OR */ line-height: 35px; }
 
 .panel-heading{
   background-color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
 }
 
 
@@ -72,4 +70,9 @@ select.form-control { min-height: 35px; /** OR */ line-height: 35px; }
   margin-right: 100px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+@font-face{
+  font-family: Josefin Sans;
+  src: url(../../assets/fonts/JosefinSans-VariableFont_wght.ttf);
 }
