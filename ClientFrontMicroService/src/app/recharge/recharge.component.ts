@@ -18,7 +18,7 @@ import { map } from "rxjs/operators";
   styleUrls: ["./recharge.component.css"],
 })
 export class RechargeComponent implements OnInit {
-  modelResult: boolean=false;
+  modelResult: boolean = false;
   listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
   recharge = new Recharge("", null, new Date(), "", null);
@@ -53,6 +53,7 @@ export class RechargeComponent implements OnInit {
     await dialogRef.afterClosed().subscribe((dialogResult) => {
       this.modelResult = dialogResult;
       this.onSaveRecharge(data);
+      this.router.navigateByUrl("/recharge");
     });
   }
 
@@ -88,7 +89,6 @@ export class RechargeComponent implements OnInit {
   }
 
   onSaveRecharge(data) {
-
     if (this.modelResult == true) {
       let res = JSON.stringify(this.recharge);
       let obj = JSON.parse(res);
@@ -96,14 +96,14 @@ export class RechargeComponent implements OnInit {
       obj.compte = { numCompte: data.compteid, type: "cc" };
       this.recharge.setCompte();
       console.log(this.recharge);
-      this.rechargeTelephone.SaveRecharge(JSON.parse(JSON.stringify(this.recharge))).subscribe(
-        (res) => {
-          this.router.navigateByUrl("/recharge");
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+      this.rechargeTelephone
+        .SaveRecharge(JSON.parse(JSON.stringify(this.recharge)))
+        .subscribe(
+          (res) => {},
+          (err) => {
+            console.log(err);
+          }
+        );
     }
   }
 
