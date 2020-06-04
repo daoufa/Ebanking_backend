@@ -10,11 +10,11 @@
     background-size: cover;
   "
 >
-  <div class="row">
-    <div class="col-sm col-lg-7 centre">
-      <div class="panel panel-success" id="outDiv">
+  <div class="container">
+    <div class="col-sm ">
+      <div class="panel panel-default" id="outDiv">
         <div class="panel-heading styleE lb">
-          Nouveau Recharge
+           Nouveau Recharge
           <button
             id="modeButton"
             class="btn btn-info styleE lb"
@@ -24,29 +24,16 @@
             {{ this.modeName }}
           </button>
         </div>
-        <div class="dropdown" *ngIf="this.mode == 2">
-          <button
-            class="btn btn-primary dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            comptes
+        
 
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>
+
 
         <div class="panel-body" *ngIf="this.mode == 1">
           <div class="panel panel-default" id="inDiv">
             <div class="panel-body">
               <form #f="ngForm" (ngSubmit)="openDialog(f.value)">
                 <div class="form-group">
-                  <label class="control-label styleE lb"
+                  <label id="lb" class="control-label styleE lb"
                     >numero telephone</label
                   >
                   <input
@@ -58,7 +45,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label styleE lb">montant</label>
+                  <label id="lb" class="control-label styleE lb" style="color: #bdbdbd ;">montant</label>
                   <input
                     class="form-control"
                     type="number"
@@ -68,7 +55,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label styleE lb"
+                  <label id="lb" class="control-label styleE lb"
                     >numero de compte</label
                   >
 
@@ -119,7 +106,7 @@
                 first as f
               "
             >
-              <h4 style="color: cornflowerblue; font-weight: bold;">
+              <h4 style="color: lightblue; font-weight: bold;">
                 compte numero : {{ c.numCompte }}
               </h4>
               <table class="table table-hover">
@@ -150,7 +137,7 @@
                 first as f
               "
             >
-              <h4 style="color: rgb(252, 86, 57); font-weight: bold;">
+              <h4 style="color: red; font-weight: bold;">
                 compte numero : {{ c.numCompte }}
               </h4>
               <table class="table table-hover">
