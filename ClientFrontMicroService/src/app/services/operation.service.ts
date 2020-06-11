@@ -59,9 +59,9 @@ export class OperationService {
     return this.httpClient.delete(url);
   }
 
-  public save(data): Observable<Virement> {
+  public save(data) {
     // @ts-ignore
-
+  console.log(data);
     return this.httpClient.post('http://localhost:8080/saveVirements', data);
 
   }

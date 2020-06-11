@@ -46,7 +46,7 @@ export class VirementComponent implements OnInit {
   }
 
   getVirements() {
-    this.operationService.getVirementsByCompteId(2).subscribe(
+    this.operationService.getVirementsByCompteId(62).subscribe(
       (data) => {
         console.log(data);
         this.virements = data;
@@ -59,7 +59,7 @@ export class VirementComponent implements OnInit {
   }
 
   getComptes() {
-    this.compteService.getComptesByClientId(1).subscribe(
+    this.compteService.getComptesByClientId(10).subscribe(
       (data) => {
         this.comptes = data;
         console.log(this.comptes);
