@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Client } from "../model/client";
+import {exhaustMap, take} from "rxjs/operators";
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +11,7 @@ import { Client } from "../model/client";
 export class ClientService {
   public host: string = "http://localhost:8080/clients/";
   // @ts-ignore
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,private authService:AuthenticationService) {}
 
   public getClients(page: number, size: number) {
    // let jwtToken = localStorage.getItem("token");
@@ -23,21 +25,12 @@ export class ClientService {
     return this.httpClient.get(this.host+"/search/byDesignationPage?mc="+mc+"&page="+page+"&size="+size);
   }
 */
-  public deleteResource(url) {
-    return this.httpClient.delete(url);
-  }
 
-  public save(data): Observable<Client> {
-    // @ts-ignore
-    return this.httpClient.post(this.host, data);
-  }
 
-  public getResource(url): Observable<Client> {
-    // @ts-ignore
-    return this.httpClient.get(url);
-  }
 
-  public updateResource(data) {
+
+
+  public update(data) {
     // @ts-ignore
     return this.httpClient.put(this.host, data);
   }
@@ -46,10 +39,12 @@ export class ClientService {
     // @ts-ignore
 
     // let jwtToken=localStorage.getItem('token');
+    return this.authService.user.pipe(take(1),exhaustMap(user=>{
+      return this.httpClient.get(
+        this.host + clientid
+        ,{headers:new HttpHeaders({'Authorization':user.token})}
+      );
+    }));
 
-    return this.httpClient.get(
-      this.host + clientid
-      // ,{headers:new HttpHeaders({'Authorization':jwtToken})}
-    );
   }
 }

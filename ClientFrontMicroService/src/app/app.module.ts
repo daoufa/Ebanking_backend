@@ -20,6 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogComponent } from "./dialog/dialog.component";
 import { DemandeComponent } from './demande/demande.component';
+import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DemandeComponent } from './demande/demande.component';
     RechargeComponent,
     DialogComponent,
     DemandeComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

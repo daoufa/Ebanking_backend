@@ -5,6 +5,7 @@ import { Virement } from "../model/virement.model";
 import { HttpHeaders } from "@angular/common/http";
 import { AuthenticationService } from "./authentication.service";
 import { ComptesService } from "./comptes.service";
+import {exhaustMap, take} from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
@@ -47,22 +48,34 @@ export class OperationService {
     );
   }
 
-  public getVirementsByCompteId(cpteid: number) {
-    // let jwtToken=localStorage.getItem('token');
-    return this.httpClient.get(
-      "http://localhost:8080/comptes/" + cpteid + "/virementsOut"
-      // ,{headers:new HttpHeaders({'Authorization':jwtToken})}
-    );
 
+
+
+  public getVirementsByCompteId(cpteid: number) {
+
+    return this.authService.user.pipe(take(1),exhaustMap(user=>{
+      return this.httpClient.get(
+        "http://localhost:8080/comptes/" + cpteid + "/virementsOut"
+         ,{headers:new HttpHeaders({'Authorization':user.token})}
+      );
+    }));
   }
+
+
   public deleteResource(url) {
     return this.httpClient.delete(url);
   }
 
+
   public save(data) {
-    // @ts-ignore
-  console.log(data);
-    return this.httpClient.post('http://localhost:8080/saveVirements', data);
+
+    return this.authService.user.pipe(take(1),exhaustMap(user=>{
+      return this.httpClient.post('http://localhost:8080/saveVirements', data
+
+    ,{headers:new HttpHeaders({'Authorization':user.token})}
+      );
+    }));
+
 
   }
 

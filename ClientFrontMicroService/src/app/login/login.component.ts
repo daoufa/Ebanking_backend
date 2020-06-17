@@ -1,21 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
-import { AuthenticationService } from "../services/authentication.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../services/authentication.service';
+import {FormGroup, NgForm} from '@angular/forms';
+import {AppComponent} from '../app.component';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   username: string;
   password: string;
-  errorMessage = "Invalid Credentials";
+  errorMessage : string = null;
   successMessage: string;
   invalidLogin = false;
   loginSuccess = false;
-  credentials = { username: "", password: "" };
+  isLoading:boolean=false;
+
+  credentials = { username: '', password: '' };
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -23,30 +27,41 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  login(dataForm) {
-    console.log(dataForm);
+  login(form: NgForm) {
+
+
+    if(!form.valid){
+      return;
+    }
+    const code=form.value.username
+    const password=form.value.password;
+  this.isLoading=true;
     this.authenticationService
-      .login(dataForm)
+      .login(form.value)
       .subscribe(
         (result) => {
-          let jwtToken =result.headers.get('Authorization');
-          //console.log(result.headers.get('Authorization'));
+          console.log(result);
+         /* let jwtToken =result.headers.get('Authorization');
           this.authenticationService.saveToken(jwtToken);
           this.invalidLogin = false;
-         /* this.loginSuccess = true;
+          this.loginSuccess = true;
           this.successMessage = "Login Successful.";*/
           this.router.navigate(["/home"]);
         },
-        () => {
-          this.invalidLogin = true;
-          this.loginSuccess = false;
+        (err) => {
+          this.errorMessage=err;
+          console.log(err);
+         // this.invalidLogin = true;
+        //  this.loginSuccess = false;
         }
       );
+
+    form.reset();
   }
 
 
-  saveToken(jwtToken:string){
-    localStorage.setItem('token',jwtToken);
+  saveToken(jwtToken: string) {
+    localStorage.setItem('token', jwtToken);
   }
 
   // constructor(

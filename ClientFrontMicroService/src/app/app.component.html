@@ -12,7 +12,7 @@
 </div>
 <!-- end preloader -->
 <!-- start navigation -->
-<nav class="navbar navbar-default templatemo-nav" role="navigation">
+<nav class="navbar navbar-default templatemo-nav" role="navigation" >
   <div class="container">
 
     <div class="navbar-header">
@@ -26,12 +26,16 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right text-uppercase">
 
-        <li><a href="#top"><span>Accueil</span></a></li>
-        <li><a routerLink="/virement"><span>Virements</span></a></li>
-        <li><a routerLink="/recharge"><span>Recharges</span></a></li>
-        <li><a routerLink="/comptes"><span>Comptes</span></a></li>
-        <li><a routerLink="/profiles"><span>Profile</span></a></li>
-        <li><a href="/"><span>Qui somme Nous</span></a></li>
+        <li><a href="#top" *ngIf="isAuthenticated"><span>Accueil</span></a></li>
+        <li><a routerLink="/login" *ngIf="!isAuthenticated"><span>Se Connecter</span></a></li>
+        <li><a routerLink="/virement" *ngIf="isAuthenticated"><span>Virements</span></a></li>
+        <li><a routerLink="/recharge" *ngIf="isAuthenticated"><span>Recharges</span></a></li>
+        <li><a routerLink="/comptes" *ngIf="isAuthenticated"><span>Comptes</span></a></li>
+        <li><a routerLink="/profiles" *ngIf="isAuthenticated"><span>Profile</span></a></li>
+        <li><a href="/" *ngIf="isAuthenticated"><span>Qui somme Nous</span></a></li>
+        <li>
+          <a style="cursor:pointer;" *ngIf="isAuthenticated">Logout</a>
+        </li>
       </ul>
     </div>
   </div>
