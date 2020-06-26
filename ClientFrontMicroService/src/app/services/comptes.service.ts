@@ -16,12 +16,14 @@ export class ComptesService {
   constructor(private httpClient: HttpClient, private authService : AuthenticationService) {}
 
   getComptesByClientId(numclient: number) {
-    // let jwtToken=localStorage.getItem('token');
+    return this.authService.user.pipe(take(1),exhaustMap(user=>{
+      return this.httpClient.get(
+        "http://localhost:8080/clients/" + numclient + "/comptes"
+        ,{headers:new HttpHeaders({'Authorization':user.token})}
+      );
+    }));
 
-    return this.httpClient.get(
-      "http://localhost:8080/clients/" + numclient + "/comptes"
-      // {headers:new HttpHeaders({'Authorization':jwtToken})}
-    );
+
   }
   getComptesByOperationId(numOperation: number) {
     return this.httpClient.get("http://localhost:8080/operations/1/compte");

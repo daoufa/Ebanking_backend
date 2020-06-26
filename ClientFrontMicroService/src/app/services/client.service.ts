@@ -13,23 +13,6 @@ export class ClientService {
   // @ts-ignore
   constructor(private httpClient: HttpClient,private authService:AuthenticationService) {}
 
-  public getClients(page: number, size: number) {
-   // let jwtToken = localStorage.getItem("token");
-
-    return this.httpClient.get(this.host/*, {
-      headers: new HttpHeaders({ Authorization: jwtToken }),
-    }*/);
-  }
-  /* public getProductsByKeyword(mc:string,page:number,size:number ){
-
-    return this.httpClient.get(this.host+"/search/byDesignationPage?mc="+mc+"&page="+page+"&size="+size);
-  }
-*/
-
-
-
-
-
   public update(data) {
     // @ts-ignore
     return this.httpClient.put(this.host, data);
