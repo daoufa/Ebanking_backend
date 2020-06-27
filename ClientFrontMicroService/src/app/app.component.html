@@ -34,7 +34,7 @@
         <li><a routerLink="/profiles" *ngIf="isAuthenticated"><span>Profile</span></a></li>
         <li><a href="/" *ngIf="isAuthenticated"><span>Qui somme Nous</span></a></li>
         <li>
-          <a style="cursor:pointer;" *ngIf="isAuthenticated">Logout</a>
+          <a style="cursor:pointer;" *ngIf="isAuthenticated" (click)="onLogout()">Logout</a>
         </li>
       </ul>
     </div>
