@@ -29,10 +29,12 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
     //  http.get("login").subscribe((data) => (this.login = data));
   }
   ngOnInit() {
+    this.authService.autoLogin();
    this.userSub= this.authService.user.subscribe(user=>{
   this.isAuthenticated=!!user;
     if(this.isAuthenticated) this.getClient(user);
    });
+
   }
 
 

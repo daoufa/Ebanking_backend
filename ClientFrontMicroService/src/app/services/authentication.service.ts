@@ -55,6 +55,7 @@ export class AuthenticationService {
           const userRes=new User(user.username,id,user.password,resData.headers.get('Authorization'));
 
           this.user.next(userRes);
+          localStorage.setItem('userData',JSON.stringify(userRes));
         },
         (err) => {
           console.log(err);
@@ -63,7 +64,24 @@ export class AuthenticationService {
        }));
   }
 
+  autoLogin(){
+    const userData=JSON.parse(localStorage.getItem('userData'));
+
+    if(!userData) return;
+
+    const loadedUser = new User(
+      userData.code,
+      userData.id,
+      userData.password,
+      userData._token);
+    if(loadedUser.token){
+      this.user.next(loadedUser);
+    }
+
+  }
+
   logout(){
+    localStorage.removeItem('userData');
     this.user.next(null);
     this.router.navigate(['/login']);
   }
