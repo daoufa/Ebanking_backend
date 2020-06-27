@@ -52,6 +52,10 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
     this.userSub.unsubscribe();
   }
 
+  onLogout(){
+    this.authService.logout();
+  }
+
   onSelectedVirement() {
     this.router.navigateByUrl("/virement");
   }

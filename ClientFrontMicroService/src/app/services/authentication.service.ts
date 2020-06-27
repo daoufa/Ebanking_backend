@@ -6,6 +6,7 @@ import { throwError, BehaviorSubject} from "rxjs";
 import {User} from "../user/user";
 import {UserService} from "./user.service";
 import {Client} from "../model/client";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class AuthenticationService {
   user = new BehaviorSubject<User>(null);
 
 
-  constructor(private http: HttpClient,private userService: UserService) {}
+  constructor(private http: HttpClient,private userService: UserService,private router:Router) {}
 
   authenticationService(username: String, password: String) {
     return this.http
@@ -62,6 +63,11 @@ export class AuthenticationService {
        }));
   }
 
+  logout(){
+    this.user.next(null);
+    this.router.navigate(['/login']);
+  }
+
   private handleError(errorRes:HttpErrorResponse){
     let errorMessage= 'An unkonwn error occured!!';
     if(!errorRes.message){
@@ -82,19 +88,6 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
-
-
-
-
-
-
-
-
-
-
-  logout(){
-    localStorage.removeItem('token');
-  }
   saveToken(jwtToken) {
     this.jwtToken = jwtToken;
     localStorage.setItem ('token', jwtToken);
