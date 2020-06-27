@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../services/client.service';
 import {Client} from "../model/client";
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-profile',
@@ -17,14 +18,10 @@ export class ProfileComponent implements OnInit {
     this.getClientInfos();
   }
 
-  getClientInfos(){ 
-    this.clientService.getClient(this.clientId).subscribe((data) =>{
-      this.client = new Client().deserialize(data);
-      console.log(this.client);
-    },err =>{
-      console.log(err);
-    }
-    );
+  getClientInfos(){
+
+      this.client = AppComponent.client;
+
   }
 
 }
