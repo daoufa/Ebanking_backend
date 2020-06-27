@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogComponent } from "./dialog/dialog.component";
 import { DemandeComponent } from './demande/demande.component';
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [

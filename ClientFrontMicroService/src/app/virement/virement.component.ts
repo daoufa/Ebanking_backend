@@ -9,6 +9,11 @@ import { CompteEpargne } from "../model/CompteEpargne";
 import { DatePipe } from "@angular/common";
 import { async } from "rxjs/internal/scheduler/async";
 import { Router } from "@angular/router";
+import {AppComponent} from "../app.component";
+import {Client} from "../model/client";
+import {Subscription} from "rxjs";
+import {ClientService} from "../services/client.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: "app-virement",
@@ -25,25 +30,28 @@ export class VirementComponent implements OnInit {
   comptes;
   cptType: string;
   cptDestType: string;
-
+  client:Client;
   res: any;
   isEpargne = false;
   mode = 1;
   modeName = "Historique";
-
+  private userSub:Subscription;
   constructor(
     private operationService: OperationService,
     private compteService: ComptesService,
-    private router: Router
+    private router: Router,
+    private clientService:ClientService,
+    private authService:AuthenticationService
   ) {}
 
   ngOnInit(): void {
     this.getComptes();
-    this.getVirements();
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
   }
+
+
 
   getVirements() {
     this.operationService.getVirementsByCompteId(62).subscribe(
@@ -59,10 +67,11 @@ export class VirementComponent implements OnInit {
   }
 
   getComptes() {
-    this.compteService.getComptesByClientId(10).subscribe(
+    this.compteService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
         console.log(this.comptes);
+        this.getVirements();
       },
       (err) => {
         console.log(err);

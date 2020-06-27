@@ -4,6 +4,8 @@ import {catchError, map, tap} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { throwError, BehaviorSubject} from "rxjs";
 import {User} from "../user/user";
+import {UserService} from "./user.service";
+import {Client} from "../model/client";
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,8 @@ export class AuthenticationService {
   private host = 'http://localhost:8080';
   user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient,private userService: UserService) {}
 
   authenticationService(username: String, password: String) {
     return this.http
@@ -38,13 +41,24 @@ export class AuthenticationService {
 
 
   login(user) {
-
+    var id:number;
    return this.http.post(this.host + '/login', user, {observe: 'response'})
      .pipe(
        catchError(this.handleError),tap(resData=>{
        //  const expirationDate=new Date();
-      const userRes=new User(user.username,user.password,resData.headers.get('Authorization')/*,expirationDate*/);
-      this.user.next(userRes);
+
+      this.userService.getUsersId(user.username).subscribe((data) => {
+
+          var x = data['code'];
+          id = +x;
+          const userRes=new User(user.username,id,user.password,resData.headers.get('Authorization'));
+
+          this.user.next(userRes);
+        },
+        (err) => {
+          console.log(err);
+        });
+
        }));
   }
 

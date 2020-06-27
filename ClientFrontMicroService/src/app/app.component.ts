@@ -2,7 +2,10 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit} from "@angular/
 import { HttpClient } from "@angular/common/http";
 import { AuthenticationService } from "./services/authentication.service";
 import { Router } from "@angular/router";
-import {Subscription} from "rxjs";
+import {BehaviorSubject, Subscription} from "rxjs";
+import {ClientService} from "./services/client.service";
+import {User} from "./user/user";
+import {Client} from "./model/client";
 
 @Component({
   selector: "app-root",
@@ -15,21 +18,36 @@ export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
  private userSub:Subscription;
   title = "ClientFrontMicroService";
   login = {};
-
+ static client :Client;
   constructor(
     private elementRef: ElementRef,
     private http: HttpClient,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private clientService:ClientService
   ) {
     //  http.get("login").subscribe((data) => (this.login = data));
   }
   ngOnInit() {
    this.userSub= this.authService.user.subscribe(user=>{
   this.isAuthenticated=!!user;
+    if(this.isAuthenticated) this.getClient(user);
    });
   }
 
+
+  getClient(user){
+  this.clientService.getClient(user.id).subscribe(
+    (data) => {
+      AppComponent.client=new Client().deserialize(data);
+
+    },
+    (err) => {
+      console.log(err);
+    }
+
+  );
+  }
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }
