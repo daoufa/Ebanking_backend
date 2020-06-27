@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ComptesService } from '../services/comptes.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-comptes',
@@ -9,7 +10,6 @@ import { ComptesService } from '../services/comptes.service';
 export class ComptesComponent implements OnInit {
 
   public compte : any;
-  public clientId : any = 1;
   public message : string ;
   public currentNum : any;
   constructor(private compteService : ComptesService) { }
@@ -23,7 +23,7 @@ export class ComptesComponent implements OnInit {
 
  async consulterCompte(numCpt){
    console.log(numCpt["numero"]);
-    this.compteService.getCompte(numCpt["numero"],this.clientId).subscribe(data => {
+    this.compteService.getCompte(numCpt["numero"],AppComponent.client.code).subscribe(data => {
       this.compte = data;
       this.message = "";
       console.log(data);

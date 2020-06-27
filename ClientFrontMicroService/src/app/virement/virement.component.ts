@@ -30,12 +30,12 @@ export class VirementComponent implements OnInit {
   comptes;
   cptType: string;
   cptDestType: string;
-  client:Client;
   res: any;
   isEpargne = false;
   mode = 1;
   modeName = "Historique";
   private userSub:Subscription;
+
   constructor(
     private operationService: OperationService,
     private compteService: ComptesService,
@@ -49,7 +49,7 @@ export class VirementComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
-  }
+  } 
 
 
 

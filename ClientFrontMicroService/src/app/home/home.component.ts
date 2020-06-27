@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ComptesService } from "../services/comptes.service";
 import { ClientService } from "../services/client.service";
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: "app-home",
@@ -10,7 +11,7 @@ import { ClientService } from "../services/client.service";
 })
 export class HomeComponent implements OnInit {
   public start:boolean=false;
-  public clientid = 1;
+  
 
   client;
   comptes;
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   getComptes() {
-    this.comptesService.getComptesByClientId(this.clientid).subscribe(
+    this.comptesService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
       },
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   getClient() {
-    this.clientService.getClient(this.clientid).subscribe(
+    this.clientService.getClient(AppComponent.client.code).subscribe(
       (data) => {
         this.client = data;
       },

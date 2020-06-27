@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RechargeTelephoneService } from "../services/recharge-telephone.service";
 import { Recharge } from "../model/reacharge.model";
 import { ComptesService } from "../services/comptes.service";
+import {AppComponent} from "../app.component";
 
 //import { Compte } from "../model/compte.model";
 import { Router } from "@angular/router";
@@ -22,7 +23,6 @@ export class RechargeComponent implements OnInit {
   listRecharges: Recharge[] = [new Recharge("", 0.0, new Date(), "", 0)];
   comptes;
   recharge = new Recharge("", null, new Date(), "", null);
-  clientid = 1;
   cptIdList = [];
   mode = 1;
   modeName = "Historique";
@@ -108,7 +108,7 @@ export class RechargeComponent implements OnInit {
   }
 
   getComptes() {
-    this.comptesService.getComptesByClientId(this.clientid).subscribe(
+    this.comptesService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
         this.setListCptsId();
