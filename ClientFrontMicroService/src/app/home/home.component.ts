@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ComptesService } from "../services/comptes.service";
 import { ClientService } from "../services/client.service";
 import { AppComponent } from '../app.component';
+import { Client } from '../model/client';
 
 @Component({
   selector: "app-home",
@@ -12,7 +13,7 @@ import { AppComponent } from '../app.component';
 export class HomeComponent implements OnInit {
   public start: boolean = false;
 
-  client;
+  client : Client;
   comptes;
   constructor(
     private router: Router,
@@ -21,13 +22,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(AppComponent.client.code);
+    this.client = AppComponent.client;
     this.getComptes();
-    this.getClient();
   }
 
   getComptes() {
-    this.comptesService.getComptesByClientId(AppComponent.client.code).subscribe(
+    this.comptesService.getComptesByClientId(this.client.code).subscribe(
       (data) => {
         this.comptes = data;
         console.log(this.comptes);
@@ -38,21 +38,6 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
-  getClient() {
-    this.clientService.getClient(AppComponent.client.code).subscribe(
-      (data) => {
-        this.client = data;
-        console.log(this.client);
-      },
-      (err) => {
-        console.log(err);
-        console.log("getComptes Error");
-      }
-    );
-  }
-
-
 
   onstart() {
     this.start = true;
