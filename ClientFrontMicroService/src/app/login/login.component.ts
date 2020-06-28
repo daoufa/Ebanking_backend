@@ -41,18 +41,13 @@ export class LoginComponent {
       .subscribe(
         (result) => {
           console.log(result);
-         /* let jwtToken =result.headers.get('Authorization');
-          this.authenticationService.saveToken(jwtToken);
-          this.invalidLogin = false;
-          this.loginSuccess = true;
-          this.successMessage = "Login Successful.";*/
+
           this.router.navigate(["/home"]);
         },
         (err) => {
+          this.isLoading=false;
           this.errorMessage=err;
           console.log(err);
-         // this.invalidLogin = true;
-        //  this.loginSuccess = false;
         }
       );
 
@@ -64,18 +59,5 @@ export class LoginComponent {
     localStorage.setItem('token', jwtToken);
   }
 
-  // constructor(
-  //   private authService: AuthenticationService,
-  //   private router: Router
-  // ) {}
 
-  // ngOnInit(): void {}
-
-  // onLogin(dataForm: any) {
-  //   this.authService.login(dataForm.username, dataForm.password);
-  //   if (this.authService.isAuthenticated) {
-  //     this.authService.saveAuthenticatedUser();
-  //     this.router.navigateByUrl("/home");
-  //   }
-  // }
 }

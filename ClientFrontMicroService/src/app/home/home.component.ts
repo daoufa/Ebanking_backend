@@ -11,7 +11,7 @@ import { AppComponent } from '../app.component';
 })
 export class HomeComponent implements OnInit {
   public start:boolean=false;
-  
+
 
   client;
   comptes;
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getComptes();
-    this.getClient();
+   // this.getComptes();
+    //this.getClient();
   }
 
   getComptes() {

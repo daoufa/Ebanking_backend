@@ -49,7 +49,7 @@ export class VirementComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
-  } 
+  }
 
 
 
@@ -70,7 +70,7 @@ export class VirementComponent implements OnInit {
     this.compteService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
-        console.log(this.comptes);
+        console.log(data);
         this.getVirements();
       },
       (err) => {
