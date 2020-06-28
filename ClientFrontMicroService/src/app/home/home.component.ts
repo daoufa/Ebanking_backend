@@ -10,8 +10,7 @@ import { AppComponent } from '../app.component';
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  public start:boolean=false;
-
+  public start: boolean = false;
 
   client;
   comptes;
@@ -19,19 +18,22 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private comptesService: ComptesService,
     private clientService: ClientService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-   // this.getComptes();
-    //this.getClient();
+    console.log(AppComponent.client.code);
+    this.getComptes();
+    this.getClient();
   }
 
   getComptes() {
     this.comptesService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
+        console.log(this.comptes);
       },
       (err) => {
+        console.log(err);
         console.log("getComptes Error");
       }
     );
@@ -41,8 +43,10 @@ export class HomeComponent implements OnInit {
     this.clientService.getClient(AppComponent.client.code).subscribe(
       (data) => {
         this.client = data;
+        console.log(this.client);
       },
       (err) => {
+        console.log(err);
         console.log("getComptes Error");
       }
     );
@@ -53,8 +57,8 @@ export class HomeComponent implements OnInit {
   onstart() {
     this.start = true;
   }
-  goToMoreInfos(c){
-    this.router.navigate(['/comptes'],{state : {data: {c}}});
+  goToMoreInfos(c) {
+    this.router.navigate(['/comptes'], { state: { data: { c } } });
 
   }
 }

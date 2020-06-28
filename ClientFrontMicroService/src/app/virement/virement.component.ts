@@ -53,8 +53,8 @@ export class VirementComponent implements OnInit {
 
 
 
-  getVirements() {
-    this.operationService.getVirementsByCompteId(62).subscribe(
+  getVirements(cptNum : number) {
+    this.operationService.getVirementsByCompteId(cptNum).subscribe(
       (data) => {
         console.log(data);
         this.virements = data;
@@ -70,8 +70,18 @@ export class VirementComponent implements OnInit {
     this.compteService.getComptesByClientId(AppComponent.client.code).subscribe(
       (data) => {
         this.comptes = data;
-        console.log(data);
-        this.getVirements();
+        let i = 0;
+        for (let c in data["_embedded"]["compteCourants"]) {
+          let compteNum = data["_embedded"]["compteCourants"][i]["numCompte"];
+          this.getVirements(compteNum);
+          i++;
+        }
+        for (let c in data["_embedded"]["compteEpargnes"]) {
+          let compteNum = data["_embedded"]["compteEpargnes"][i]["numCompte"];
+          this.getVirements(compteNum);
+          i++;
+        }
+        
       },
       (err) => {
         console.log(err);
